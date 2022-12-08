@@ -1,0 +1,8 @@
+.envelope {
+    position: absolute;
+    z-index: 2;
+    top:1rem;
+    right: 1rem;
+    color: rgb(232, 220, 220);
+font-size: 2rem;
+}
