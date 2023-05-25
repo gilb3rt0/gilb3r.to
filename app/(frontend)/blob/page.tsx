@@ -1,5 +1,4 @@
 'use client'
-
 import dynamic from 'next/dynamic'
 
 const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false })

@@ -11,6 +11,8 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   disable: process.env.NODE_ENV === 'development',
 })
 
+const withTM = require('next-transpile-modules')(['three', 'drei', 'react-three/fiber'])
+
 const nextConfig = {
   // uncomment the following snippet if using styled components
   // compiler: {
@@ -18,7 +20,7 @@ const nextConfig = {
   // },
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
   experimental: {
-    reactRoot: 'concurrent',
+    // reactRoot: 'concurrent',
     appDir: true,
   },
   images: {},
@@ -48,7 +50,12 @@ const nextConfig = {
       exclude: /node_modules/,
       use: ['raw-loader', 'glslify-loader'],
     })
-
+    config.module.rules.push({
+      test: /\.(glb|gltf)$/,
+      use: {
+        loader: 'file-loader',
+      },
+    })
     return config
   },
 }
