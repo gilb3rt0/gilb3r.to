@@ -9,6 +9,7 @@ export default function Scene({ ...props }) {
   return (
     <Canvas {...props}>
       {/* @ts-ignore */}
+      <color attach='background' args={['black']} />
       <r3f.Out />
       <Preload all />
     </Canvas>

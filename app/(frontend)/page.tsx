@@ -1,7 +1,9 @@
 'use client'
+import { Particles } from '@/components/canvas/Particles'
 import { getProjects } from '@/sanity/utils'
+import { ContactShadows } from '@react-three/drei'
 import dynamic from 'next/dynamic'
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 
 const Laptop = dynamic(() => import('@/components/canvas/Laptop'), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
@@ -26,10 +28,12 @@ export default async function Page() {
 
   return (
     <>
-      <View className='flex h-full w-full flex-col items-center justify-center border-2 border-sky-500'>
+      <View className='flex h-full w-full flex-col items-center justify-center'>
+        <ambientLight intensity={0.1} />
+        <Particles />
         <Laptop projects={projects} />
         <Suspense fallback={null}>
-          <Common />
+          <Common color={'black'} />
         </Suspense>
       </View>
     </>
