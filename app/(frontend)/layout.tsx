@@ -1,14 +1,14 @@
 import { Layout } from '@/components/dom/Layout'
-import './global.css'
+import './global.scss'
 
 export const metadata = {
-  title: 'Next.js + Three.js',
-  description: 'A minimal starter for Nextjs + React-three-fiber and Threejs.',
+  title: 'Gilberto Mascarenhas | Web Developer',
+  description: 'Gilberto Mascarenhas is a web developer based in Berlin Germany.',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en' className='antialiased'>
+    <html lang='en'>
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head

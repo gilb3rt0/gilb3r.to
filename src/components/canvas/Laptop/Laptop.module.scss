@@ -1,0 +1,52 @@
+.Screen {
+  width: 1280px;
+  height: 800px;
+  overflow: hidden;
+  iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+    transform-origin: top-left;
+  }
+}
+.Description {
+  width: 15rem;
+  height: 10rem;
+  overflow-y: scroll;
+  color: white;
+  font-family: var(--primary-font);
+  // style scrollbar for all browsers to bea blurry pill in white
+  scrollbar-color: white white;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 1rem;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: #999;
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: #999;
+  }
+  // firefox scrollbar
+}
+.Button {
+  button {
+    cursor: pointer;
+    font-family: var(--secondary-font);
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+  }
+}

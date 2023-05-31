@@ -1,0 +1,22 @@
+@import 'public/fonts/fonty.scss';
+
+:root {
+  --primary-font: 'Steps-Mono', sans-serif;
+  --secondary-font: 'Pilowlava', sans-serif;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    scale: 1.5;
+  }
+}
