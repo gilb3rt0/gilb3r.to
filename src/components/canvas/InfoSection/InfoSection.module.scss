@@ -1,0 +1,23 @@
+.InfoScene {
+  max-width: 12rem;
+  color: white;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--secondary-font);
+  }
+  p {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      display: inline;
+    }
+    font-family: var(--primary-font);
+  }
+}

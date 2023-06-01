@@ -27,10 +27,7 @@ const View = forwardRef(({ children, orbit, ...props }: ViewProps, ref) => {
     <>
       <div ref={localRef} {...props} />
       <Three>
-        <ViewImpl track={localRef}>
-          {children}
-          {orbit && <OrbitControls />}
-        </ViewImpl>
+        <ViewImpl track={localRef}>{children}</ViewImpl>
       </Three>
     </>
   )

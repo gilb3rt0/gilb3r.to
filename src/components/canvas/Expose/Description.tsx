@@ -1,13 +1,14 @@
+// @ts-ignore
 import { PortableText } from '@portabletext/react'
 import { Float, Html } from '@react-three/drei'
 import { useRef, useState } from 'react'
 import styles from './Laptop.module.scss'
 import * as THREE from 'three'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 
 const Description = ({ currentProject, setCurrentProject, projects }) => {
   const descriptionContainer = useRef<THREE.Group>()
-
+  const { gl } = useThree()
   return (
     <group ref={descriptionContainer} position={[4, -1, -4]}>
       <Float>
@@ -20,11 +21,21 @@ const Description = ({ currentProject, setCurrentProject, projects }) => {
           receiveShadow
           occlude
           className={styles.Description}
+          portal={{ current: gl.domElement.parentNode }}
         >
           <PortableText value={projects[currentProject].description} />
         </Html>
         <group position={[-1, -2, 2]}>
-          <Html position={[-3, 0, 0]} occlude transform center castShadow receiveShadow className={styles.Button}>
+          <Html
+            position={[-3, 0, 0]}
+            occlude
+            transform
+            center
+            castShadow
+            receiveShadow
+            className={styles.Button}
+            portal={{ current: gl.domElement.parentNode }}
+          >
             <button
               onClick={() => {
                 setCurrentProject(currentProject - 1)
@@ -45,6 +56,7 @@ const Description = ({ currentProject, setCurrentProject, projects }) => {
             castShadow
             receiveShadow
             className={styles.Button}
+            portal={{ current: gl.domElement.parentNode }}
           >
             <button
               onClick={() => {

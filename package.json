@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.13.0",
     "@sanity/image-url": "^1.0.2",
     "@types/three": "^0.152.1",
+    "framer-motion": "^10.12.16",
     "glsl-random": "^0.0.5",
     "lamina": "^1.1.23",
     "maath": "^0.6.0",

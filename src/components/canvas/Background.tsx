@@ -16,7 +16,7 @@ const Background = ({ colorA, colorB }: Colors) => {
     }
   })
   return (
-    <mesh scale={100} ref={mesh}>
+    <mesh scale={250} ref={mesh}>
       <sphereGeometry args={[1, 64, 64]} />
       <LayerMaterial side={BackSide}>
         <Depth colorA={colorA} colorB={colorB} alpha={1} mode='normal' near={130} far={200} origin={[100, 100, -100]} />
