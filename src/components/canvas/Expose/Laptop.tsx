@@ -1,3 +1,4 @@
+//@ts-nocheck
 'use client'
 import React, { useRef, Suspense } from 'react'
 import { useGLTF, Html, PresentationControls, Float } from '@react-three/drei'
