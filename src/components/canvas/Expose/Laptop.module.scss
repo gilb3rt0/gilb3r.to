@@ -15,7 +15,7 @@
   overflow-y: scroll;
   color: white;
   font-family: var(--primary-font);
-  // style scrollbar for all browsers to bea blurry pill in white
+  transition: opacity 0.1s ease-in-out;
   scrollbar-color: white white;
   scrollbar-width: thin;
 
@@ -38,7 +38,6 @@
   &::-webkit-scrollbar-thumb:window-inactive {
     background: #999;
   }
-  // firefox scrollbar
 }
 .Button {
   button {
@@ -48,5 +47,13 @@
     border: none;
     color: white;
     outline: none;
+    transition: all 0.1s ease-in-out;
+    background-color: black;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    &:hover {
+      scale: 1.5;
+    }
   }
 }

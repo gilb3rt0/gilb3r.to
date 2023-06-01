@@ -48,7 +48,7 @@ const ProjectTitle = ({ title, y }: { title: string; y: number }) => {
               <Center>
                 <group>
                   {titleLines.map((line, index) => (
-                    <group position-y={1 - index * 0.25}>
+                    <group position-y={0 - index * 0.25} key={index}>
                       <Center>
                         <Text3D
                           font={'/fonts/Basteleur Moonlight_Regular.json'}
@@ -58,7 +58,15 @@ const ProjectTitle = ({ title, y }: { title: string; y: number }) => {
                           size={0.2}
                           letterSpacing={0.02}
                         >
-                          <MeshReflectorMaterial mirror={0.5} metalness={0.5} roughness={0.01} />
+                          <MeshReflectorMaterial
+                            mirror={0.5}
+                            metalness={0.9}
+                            roughness={0.01}
+                            blur={[0, 0]}
+                            distortion={0.1}
+                            resolution={1024}
+                            args={[{ color: '#fff' }]}
+                          />
                           {line}
                         </Text3D>
                       </Center>
