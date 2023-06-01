@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-nocheck
 import { PortableText } from '@portabletext/react'
 import { Float, Html } from '@react-three/drei'
 import { useRef, useState } from 'react'

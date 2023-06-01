@@ -1,10 +1,15 @@
-import React, { useRef } from 'react'
+// @ts-nocheck
+'use client'
+import React, { useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useScroll } from '@react-three/drei'
+import { Float, Html, useScroll } from '@react-three/drei'
+import styles from './Contact.module.scss'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 const Contact = () => {
   const contact = useRef<THREE.Group>()
-  const { viewport, camera } = useThree()
+  const [sent, setSent] = useState<boolean>(false)
+  const { viewport, camera, gl } = useThree()
   const { width } = viewport
 
   const scroll = useScroll()
@@ -15,19 +20,80 @@ const Contact = () => {
       const camerapos = new THREE.Vector3(
         contact.current.position.x,
         contact.current.position.y,
-        contact.current.position.z + 10,
+        contact.current.position.z + 20,
       )
       if (offset > (1 / 3) * 2) {
-        camera.position.lerp(camerapos, 0.5)
+        camera.position.lerp(camerapos, 0.05)
+        camera.lookAt(contact.current.position)
       }
     }
   })
   return (
-    <group position-z={-200} ref={contact}>
-      <mesh>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshBasicMaterial color='red' />
-      </mesh>
+    <group position={[50, -50, -200]} ref={contact}>
+      <Float>
+        <Html
+          rotation={[0, 0, 0]}
+          transform
+          center
+          position-z={0.1}
+          castShadow
+          receiveShadow
+          occlude
+          className={styles.Container}
+          portal={{ current: gl.domElement.parentNode }}
+        >
+          <h1>GET IN TOUCH</h1>
+          <Formik
+            initialValues={{ name: '', subject: '', email: '', message: '' }}
+            validate={(values) => {
+              const errors: any = {}
+              if (!values.name) {
+                errors.name = 'Required'
+              }
+              if (!values.email) {
+                errors.email = 'Required'
+              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                errors.email = 'Invalid email address'
+              }
+              return errors
+            }}
+            onSubmit={async (values, { setSubmitting, setErrors }) => {
+              const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+              })
+              if (!res.ok) {
+                setSubmitting(false)
+                setErrors({ message: 'Something went wrong' })
+              }
+
+              setSubmitting(false)
+              setErrors({ message: 'Message sent' })
+            }}
+          >
+            {({ isSubmitting, errors }) => (
+              <Form>
+                <div>
+                  <ErrorMessage name='name' component='div' />
+                  <Field type='name' name='name' placeholder='Name' />
+                  <ErrorMessage name='subject' component='div' />
+                  <Field type='subject' name='subject' placeholder='Subject' />
+                  <ErrorMessage name='email' component='div' />
+                  <Field type='email' name='email' placeholder='Email' />
+                </div>
+                <div>
+                  <ErrorMessage name='message' component='div' />
+                  <Field as='textarea' name='message' placeholder='Message' />
+                </div>
+                <Field type='submit' value='Submit' disabled={isSubmitting} />
+              </Form>
+            )}
+          </Formik>
+        </Html>
+      </Float>
     </group>
   )
 }

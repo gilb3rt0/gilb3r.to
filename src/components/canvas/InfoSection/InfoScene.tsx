@@ -1,4 +1,4 @@
-//@ts-ignore
+//@ts-nocheck
 import { useRef } from 'react'
 import Memoji from './Memoji'
 import {
@@ -25,14 +25,20 @@ const InfoScene = () => {
 
   useFrame(() => {
     const { offset } = scroll
+    if (capsule.current) {
+      capsule.current.rotation.y = offset * Math.PI
+    }
+
+
     if (infoScene.current) {
+      infoScene.current.position.y = offset * 50
       const camerapos = new THREE.Vector3(
         infoScene.current.position.x,
         infoScene.current.position.y,
         infoScene.current.position.z + 10,
       )
       if (offset < 1 / 3) {
-        camera.position.lerp(camerapos, 0.5)
+        camera.position.lerp(camerapos, 0.05)
       }
     }
   })
@@ -52,8 +58,8 @@ const InfoScene = () => {
               >
                 <motion.h2 variants={BounceDown}>Hi!</motion.h2>
                 <motion.p variants={BounceDown}>
-                  My name is <motion.h5 variants={BounceDown}>Gilberto</motion.h5> and I am a full-stack web developer
-                  based in Berlin.
+                  My name is <motion.span variants={BounceDown}>Gilberto</motion.span> and I am a full-stack web
+                  developer based in Berlin.
                 </motion.p>
                 <motion.p variants={BounceDown}>
                   I am passionate about creating beautiful and functional websites and applications.

@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.13.0",
     "@sanity/image-url": "^1.0.2",
     "@types/three": "^0.152.1",
+    "formik": "^2.4.1",
     "framer-motion": "^10.12.16",
     "glsl-random": "^0.0.5",
     "lamina": "^1.1.23",
@@ -24,6 +25,7 @@
     "next-sanity": "^4.3.3",
     "next-transpile-modules": "^10.0.0",
     "nice-color-palettes": "^3.0.0",
+    "nodemailer": "^6.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanity": "^3.11.3",
@@ -32,7 +34,8 @@
     "styled-components": "6.0.0-rc.1",
     "three": "^0.151.3",
     "three-stdlib": "^2.22.9",
-    "tunnel-rat": "^0.1.2"
+    "tunnel-rat": "^0.1.2",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.4",
