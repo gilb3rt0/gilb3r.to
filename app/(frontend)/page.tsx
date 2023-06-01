@@ -1,7 +1,7 @@
 // @ts-nocheck
 'use client'
 import { getProjects } from '@/sanity/utils'
-import { Environment, Html, OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { Environment, PerspectiveCamera, ScrollControls } from '@react-three/drei'
 import dynamic from 'next/dynamic'
 import { View } from '@/components/canvas/View'
 import styles from './Home.module.scss'
@@ -18,9 +18,11 @@ export default async function Page() {
       <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={45} />
       <Background colorA='#6446DB' colorB='#B0A6DA' />
       <Environment preset='warehouse' />
-      <Suspense fallback={<Loading3D />}>
-        <Expose projects={projects} />
-      </Suspense>
+      <ScrollControls pages={5}>
+        <Suspense fallback={<Loading3D />}>
+          <Expose projects={projects} />
+        </Suspense>
+      </ScrollControls>
     </View>
   )
 }

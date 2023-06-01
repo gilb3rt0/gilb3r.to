@@ -1,12 +1,18 @@
-import { Html, PerspectiveCamera } from '@react-three/drei'
+'use client'
 import Laptop from './Laptop'
 import ProjectTitle from './ProjectTitle'
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import Description from './Description'
-
+import { useFrame, useThree } from '@react-three/fiber'
+import { useScroll, ScrollControls, Scroll } from '@react-three/drei'
+import * as THREE from 'three'
 const Expose = ({ projects }) => {
   const [currentProject, setCurrentProject] = useState<number>(0)
   const link = projects[currentProject].link
+  const { viewport, camera } = useThree()
+  const scroll = useScroll()
+console.log(scroll);
+
 
   return (
     <group>
