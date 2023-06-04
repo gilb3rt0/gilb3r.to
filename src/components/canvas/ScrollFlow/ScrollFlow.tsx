@@ -1,31 +1,22 @@
 'use client'
 import { Environment, PerspectiveCamera, Scroll, ScrollControls } from '@react-three/drei'
-import dynamic from 'next/dynamic'
-import { View } from '@/components/canvas/View'
-import styles from './ScrollFlow.module.scss'
-
 import { Suspense } from 'react'
 import Loading3D from '@/components/canvas/Loading/Loading3D'
-import InfoScene from '@/components/canvas/InfoSection/InfoScene'
-import Expose from '@/components/canvas/Expose/Expose'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import Contact from '@/components/canvas/Contact/Contact'
+import { useThree } from '@react-three/fiber'
 import Background from '@/components/canvas/Background'
+import DesktopFlow from './Desktop/DesktopFlow'
+import MobileFlow from './Mobile/MobileFlow'
 
 const ScrollFlow = ({ projects }) => {
+  const { size } = useThree()
+  const { width } = size
   return (
-    <Canvas>
-      <Suspense fallback={<Loading3D />}>
-        <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={45} />
-        <Background colorA='#6446DB' colorB='#B0A6DA' />
-        <Environment preset='warehouse' />
-        <ScrollControls damping={0.3} pages={3}>
-          <InfoScene />
-          <Expose projects={projects} />
-          <Contact />
-        </ScrollControls>
-      </Suspense>
-    </Canvas>
+    <Suspense fallback={<Loading3D />}>
+      <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={45} />
+      <Background colorA='#6446DB' colorB='#B0A6DA' />
+      <Environment preset='warehouse' />
+      {width > 768 ? <DesktopFlow projects={projects} /> : <MobileFlow projects={projects} />}
+    </Suspense>
   )
 }
 

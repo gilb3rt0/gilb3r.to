@@ -31,3 +31,7 @@ a {
     scale: 1.5;
   }
 }
+canvas {
+  max-height: 100vh;
+  overflow: hidden !important;
+}

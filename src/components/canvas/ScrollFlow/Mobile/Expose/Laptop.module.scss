@@ -1,0 +1,60 @@
+.Screen {
+  width: 1280px !important;
+  height: 800px !important;
+  overflow: hidden;
+
+  iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+    transform-origin: top-left;
+  }
+}
+.Description {
+  width: 15rem;
+  height: 10rem;
+  overflow-y: scroll;
+  color: white;
+  font-family: var(--primary-font);
+  transition: opacity 0.1s ease-in-out;
+  scrollbar-color: white white;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 1rem;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: #999;
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: #999;
+  }
+}
+.Button {
+  button {
+    cursor: pointer;
+    font-family: var(--secondary-font);
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    transition: all 0.1s ease-in-out;
+    background-color: black;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    &:hover {
+      scale: 1.5;
+    }
+  }
+}

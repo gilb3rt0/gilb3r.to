@@ -1,0 +1,72 @@
+.Container {
+  width: 20rem;
+  h1 {
+    font-family: var(--secondary-font);
+    color: white;
+  }
+  form {
+    color: white;
+    div {
+      display: grid;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    input {
+      font-family: var(--primary-font) !important;
+      background: none;
+      padding: 0.5rem;
+      color: white !important;
+      border: 0.1rem solid white;
+      border-radius: 1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+    .Err {
+      color: red;
+      font-family: var(--secondary-font);
+      font-size: 0.5rem;
+    }
+    textarea {
+      font-family: var(--primary-font);
+      background: none;
+      width: 100%;
+      min-height: 10rem;
+      border-radius: 1rem;
+      border: 0.1rem solid white;
+      color: white;
+      outline: none;
+      resize: none;
+      overflow-y: scroll;
+      padding: 0.5rem;
+      //   scrollbar styles for all browsers, make background transparent and a pill as thumb
+      scrollbar-color: white white;
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        width: 0.2rem;
+      }
+      &::-webkit-scrollbar-track {
+        background: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: white;
+        border-radius: 1rem;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: #ccc;
+      }
+      &::-webkit-scrollbar-thumb:active {
+        background: #999;
+      }
+      &::-webkit-scrollbar-thumb:window-inactive {
+        background: #999;
+      }
+
+      // firefox scrollbar styles
+      &::-moz-scrollbar {
+        width: 0.2rem;
+      }
+    }
+  }
+}

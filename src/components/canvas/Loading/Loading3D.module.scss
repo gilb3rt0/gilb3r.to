@@ -1,7 +1,5 @@
 .Loading {
-  // width: 100vw;
-  // height: 100vh;
-  // max-height: 100vh !important;
+  transform: translateX(-50%) translateY(-50%);
   display: grid;
   place-items: center;
   overflow: hidden;

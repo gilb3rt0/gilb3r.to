@@ -1,15 +1,14 @@
-//@ts-nocheck
 'use client'
 import React, { useRef, Suspense } from 'react'
-import { useGLTF, Html, PresentationControls, Float } from '@react-three/drei'
+import { useGLTF, Html, PresentationControls, Float, useScroll } from '@react-three/drei'
 import * as THREE from 'three'
 import LoadingDom from '@/components/dom/Loading/LoadingDom'
 
 import styles from './Laptop.module.scss'
-import { useThree } from '@react-three/fiber'
 
 export default function Laptop({ link }) {
   const laptop = useRef<THREE.Group>()
+  const scroll = useScroll()
 
   const display = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
@@ -17,7 +16,6 @@ export default function Laptop({ link }) {
   ) as any
 
   //  divide the title by length into an array of lines with maximum 15 characters per array ond do not break words
-  const { gl } = useThree()
   return (
     <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
       <Float>
@@ -79,10 +77,10 @@ export default function Laptop({ link }) {
                   transform
                   className={styles.Screen}
                   occlude='blending'
-                  portal={{ current: gl.domElement.parentNode }}
+                  portal={{ current: scroll.fixed }}
                 >
                   <Suspense fallback={<LoadingDom />}>
-                    <iframe title='embed' frameBorder={0} src={link} />
+                    <iframe title='embed' src={link} />
                   </Suspense>
                 </Html>
               </mesh>

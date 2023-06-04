@@ -18,6 +18,14 @@
       color: white !important;
       border: 0.1rem solid white;
       border-radius: 1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+    .Err {
+      color: red;
+      font-family: var(--secondary-font);
+      font-size: 0.5rem;
     }
     textarea {
       font-family: var(--primary-font);

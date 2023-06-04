@@ -1,14 +1,7 @@
 //@ts-nocheck
 import { useRef } from 'react'
 import Memoji from './Memoji'
-import {
-  MeshTransmissionMaterial,
-  PresentationControls,
-  OrbitControls,
-  Float,
-  Html,
-  useScroll,
-} from '@react-three/drei'
+import { MeshTransmissionMaterial, PresentationControls, Float, Html, useScroll } from '@react-three/drei'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import styles from './InfoSection.module.scss'
@@ -18,20 +11,16 @@ import { BounceDown } from '@/components/dom/Framer/Animations'
 const InfoScene = () => {
   const capsule = useRef<THREE.Group>()
   const infoScene = useRef<THREE.Group>()
-  const { viewport, camera, gl } = useThree()
-  const { width } = viewport
-  const xMax = width / 2
+  const { viewport, gl, camera } = useThree()
+  const { height } = viewport
+  const yMax = height / 2
+
   const scroll = useScroll()
 
   useFrame(() => {
     const { offset } = scroll
-    if (capsule.current) {
-      capsule.current.rotation.y = offset * Math.PI
-    }
-
 
     if (infoScene.current) {
-      infoScene.current.position.y = offset * 50
       const camerapos = new THREE.Vector3(
         infoScene.current.position.x,
         infoScene.current.position.y,
@@ -46,7 +35,7 @@ const InfoScene = () => {
   return (
     <group ref={infoScene}>
       <Float>
-        <group position={[-xMax / 3, 0, 0]}>
+        <group position={[0, yMax / 3, 0]} scale={0.8}>
           <AnimatePresence>
             <Html transform occlude center className={styles.InfoScene} portal={{ current: gl.domElement.parentNode }}>
               <motion.div
@@ -70,31 +59,29 @@ const InfoScene = () => {
         </group>
       </Float>
       <Float>
-        <group ref={capsule} position={[xMax / 2, 0, 0]}>
-          <PresentationControls>
-            <mesh>
-              <MeshTransmissionMaterial
-                envMapIntensity={0.1}
-                samples={10}
-                resolution={2048}
-                transmission={1}
-                roughness={0}
-                thickness={0.5}
-                ior={4.5}
-                chromaticAberration={0.0}
-                anisotropy={0.1}
-                distortion={0.3}
-                distortionScale={0.1}
-                temporalDistortion={0.01}
-                clearcoat={1}
-                attenuationDistance={0.1}
-                attenuationColor='#fff'
-                color='#fff'
-              />
-              <capsuleGeometry args={[1, 1, 4, 32]} />
-              <Memoji />
-            </mesh>
-          </PresentationControls>
+        <group ref={capsule} position={[0, (-yMax / 3) * 2, 0]} scale={1.2}>
+          <mesh>
+            <MeshTransmissionMaterial
+              envMapIntensity={0.1}
+              samples={10}
+              resolution={2048}
+              transmission={1}
+              roughness={0}
+              thickness={0.5}
+              ior={4.5}
+              chromaticAberration={0.0}
+              anisotropy={0.1}
+              distortion={0.3}
+              distortionScale={0.1}
+              temporalDistortion={0.01}
+              clearcoat={1}
+              attenuationDistance={0.1}
+              attenuationColor='#fff'
+              color='#fff'
+            />
+            <capsuleGeometry args={[1, 1, 4, 32]} />
+            <Memoji />
+          </mesh>
         </group>
       </Float>
     </group>

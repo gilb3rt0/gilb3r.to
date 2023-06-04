@@ -9,8 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 const Contact = () => {
   const contact = useRef<THREE.Group>()
   const [sent, setSent] = useState<boolean>(false)
-  const { viewport, camera, gl } = useThree()
-  const { width } = viewport
+  const { camera } = useThree()
 
   const scroll = useScroll()
 
@@ -20,7 +19,7 @@ const Contact = () => {
       const camerapos = new THREE.Vector3(
         contact.current.position.x,
         contact.current.position.y,
-        contact.current.position.z + 20,
+        contact.current.position.z + 10,
       )
       if (offset > (1 / 3) * 2) {
         camera.position.lerp(camerapos, 0.05)
@@ -40,7 +39,7 @@ const Contact = () => {
           receiveShadow
           occlude
           className={styles.Container}
-          portal={{ current: gl.domElement.parentNode }}
+          portal={{ current: scroll.fixed }}
         >
           <h1>GET IN TOUCH</h1>
           <Formik
@@ -77,15 +76,15 @@ const Contact = () => {
             {({ isSubmitting, errors }) => (
               <Form>
                 <div>
-                  <ErrorMessage name='name' component='div' />
+                  <ErrorMessage name='name' component='div' className={styles.Err} />
                   <Field type='name' name='name' placeholder='Name' />
-                  <ErrorMessage name='subject' component='div' />
+                  <ErrorMessage name='subject' component='div' className={styles.Err} />
                   <Field type='subject' name='subject' placeholder='Subject' />
-                  <ErrorMessage name='email' component='div' />
+                  <ErrorMessage name='email' component='div' className={styles.Err} />
                   <Field type='email' name='email' placeholder='Email' />
                 </div>
                 <div>
-                  <ErrorMessage name='message' component='div' />
+                  <ErrorMessage name='message' component='div' className={styles.Err} />
                   <Field as='textarea' name='message' placeholder='Message' />
                 </div>
                 <Field type='submit' value='Submit' disabled={isSubmitting} />
