@@ -11,7 +11,7 @@ import { BounceDown } from '@/components/dom/Framer/Animations'
 const InfoScene = () => {
   const capsule = useRef<THREE.Group>()
   const infoScene = useRef<THREE.Group>()
-  const { viewport, camera, gl } = useThree()
+  const { viewport, camera } = useThree()
   const { width } = viewport
   const xMax = width / 2
   const scroll = useScroll()
@@ -37,7 +37,7 @@ const InfoScene = () => {
     <group ref={infoScene} scale={1.75}>
       <Float>
         <group position={[-xMax / 3, 0, 0]}>
-          <Html transform className={styles.InfoScene} portal={{ current: scroll.fixed }} position={[-3, 3, 0]}>
+          <Html transform className={styles.InfoScene} portal={{ current: scroll.fixed }}>
             <motion.div
               className={styles.InfoScene}
               variants={BounceDown}
@@ -58,16 +58,16 @@ const InfoScene = () => {
         </group>
       </Float>
       <Float>
-        <group ref={capsule} position={[xMax / 2, 0, 0]}>
+        <group ref={capsule} position={[xMax / 2, 0, 0]} scale={1.75}>
           <mesh>
             <MeshTransmissionMaterial
-              envMapIntensity={0.1}
+            envMapIntensity={0.1}
               samples={10}
               resolution={2048}
               transmission={1}
               roughness={0}
               thickness={0.5}
-              ior={4.5}
+              ior={3.5}
               chromaticAberration={0.0}
               anisotropy={0.1}
               distortion={0.3}
@@ -78,7 +78,8 @@ const InfoScene = () => {
               attenuationColor='#fff'
               color='#fff'
             />
-            <capsuleGeometry args={[1, 1, 4, 32]} />
+            <sphereGeometry args={[1, 32, 32]} />
+
             <Memoji />
           </mesh>
         </group>

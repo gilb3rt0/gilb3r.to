@@ -14,7 +14,7 @@ const ScrollFlow = ({ projects }) => {
     <Suspense fallback={<Loading3D />}>
       <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={45} />
       <Background colorA='#6446DB' colorB='#B0A6DA' />
-      <Environment preset='warehouse' />
+      <Environment preset='studio' />
       {width > 768 ? <DesktopFlow projects={projects} /> : <MobileFlow projects={projects} />}
     </Suspense>
   )

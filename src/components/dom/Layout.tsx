@@ -16,7 +16,6 @@ const Layout = ({ children }) => {
         touchAction: 'auto',
       }}
     >
-      {children}
       <Scene
         style={{
           position: 'fixed',
@@ -28,7 +27,9 @@ const Layout = ({ children }) => {
         }}
         eventSource={ref}
         eventPrefix='client'
-      />
+      >
+        {children}
+      </Scene>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 .Container {
   width: 20rem;
+
   h1 {
     font-family: var(--secondary-font);
     color: white;
@@ -7,6 +8,7 @@
   form {
     color: white;
     div {
+      position: relative;
       display: grid;
       gap: 1rem;
       margin: 1rem 0;
@@ -21,11 +23,35 @@
       &:focus {
         outline: none;
       }
+      &:autofill {
+        font-family: var(--primary-font) !important;
+        background: none;
+      }
+      &::-webkit-autofill {
+        background: none;
+        font-family: var(--primary-font) !important;
+      }
+    }
+    // input type submit
+    input[type='submit'] {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: black;
+        border-color: black;
+        color: transparent;
+        scale: 1.5;
+      }
     }
     .Err {
       color: red;
       font-family: var(--secondary-font);
       font-size: 0.5rem;
+      position: absolute;
+      margin-right: 21rem;
+      top: -.5rem;
+      right: 0;
+      display: flex;
     }
     textarea {
       font-family: var(--primary-font);

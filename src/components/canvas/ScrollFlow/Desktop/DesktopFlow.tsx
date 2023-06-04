@@ -6,10 +6,10 @@ import Contact from '@/components/canvas/ScrollFlow/Desktop/Contact/Contact'
 
 const DesktopFlow = ({ projects }) => {
   return (
-    <ScrollControls damping={1} pages={3}>
+    <ScrollControls damping={0.2} pages={3}>
       <InfoScene />
-      <Expose projects={projects} />
       <Contact />
+      <Expose projects={projects} />
     </ScrollControls>
   )
 }

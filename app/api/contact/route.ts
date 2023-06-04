@@ -17,8 +17,6 @@ export async function POST(req: Request, res: Response) {
     return new Response('Invalid input', { status: 400 })
   }
 
-
-  
   const transporter = nodemailer.createTransport({
     host: 'mail.privateemail.com',
     port: 465,
@@ -28,8 +26,6 @@ export async function POST(req: Request, res: Response) {
       pass: process.env.EMAIL_PW,
     },
   })
-
-//   return new Response('OK', { status: 200 })
 
   const mailData = {
     from: process.env.EMAIL_ADDRESS,
@@ -42,11 +38,11 @@ export async function POST(req: Request, res: Response) {
   await transporter
     .sendMail(mailData)
     .catch((err) => {
-      console.error(err)
+      console.error("mailgun error: ",err)
       return new Response('Error sending email', { status: 500 })
     })
-    .then(() => {
-      console.log('Email sent')
+    .then((success) => {
+      console.log('Email sent', success)
       return new Response('OK', { status: 200 })
     })
 }

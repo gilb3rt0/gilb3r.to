@@ -16,8 +16,6 @@ const Description = ({ currentProject, setCurrentProject, projects }) => {
           transform
           center
           position-z={0.1}
-          castShadow
-          receiveShadow
           occlude
           className={styles.Description}
           portal={{ current: scroll.fixed }}

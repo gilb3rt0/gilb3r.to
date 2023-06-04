@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client'
 import React, { useRef, useState } from 'react'
 import * as THREE from 'three'
@@ -34,9 +33,6 @@ const Contact = () => {
           rotation={[0, 0, 0]}
           transform
           center
-          position-z={0.1}
-          castShadow
-          receiveShadow
           occlude
           className={styles.Container}
           portal={{ current: scroll.fixed }}
