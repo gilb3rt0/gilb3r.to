@@ -10,7 +10,10 @@ const Contact = () => {
   const [sent, setSent] = useState<boolean>(false)
   const form = useRef<THREE.Group>()
   const successMsg = useRef<THREE.Group>()
-  const { camera } = useThree()
+  const { size, camera } = useThree()
+  const { width } = size
+
+  const isMobile = width < 768
 
   useEffect(() => {
     if (sent) {
@@ -56,6 +59,7 @@ const Contact = () => {
             height={0.1}
             size={2}
             letterSpacing={0.02}
+            scale={isMobile ? 0.3 : 1}
           >
             <MeshReflectorMaterial
               mirror={0.5}
@@ -82,6 +86,7 @@ const Contact = () => {
                 size={2}
                 letterSpacing={0.02}
                 visible={sent}
+                scale={isMobile ? 0.3 : 1}
               >
                 <MeshReflectorMaterial
                   mirror={0.5}

@@ -44,7 +44,7 @@ const InfoScene = () => {
   return (
     <group ref={infoScene} scale={isMobile ? 1 : 2}>
       <Float>
-        <group position={isMobile ? [0, -5, 0] : [-3, -1, 0]}>
+        <group position={isMobile ? [0, -3, 0] : [-3, -1, 0]}>
           <group position-y={3}>
             <Center>
               <Text3D
@@ -88,7 +88,7 @@ const InfoScene = () => {
         </group>
       </Float>
       <Float>
-        <group ref={capsule} position={isMobile ? [0, 2, 0] : [3, 0, 0]} scale={2.5}>
+        <group ref={capsule} position={isMobile ? [0, 4, 0] : [3, 0, 0]} scale={2.5}>
           <mesh>
             <MeshTransmissionMaterial
               envMapIntensity={0.1}

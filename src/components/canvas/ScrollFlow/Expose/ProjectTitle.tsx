@@ -7,7 +7,7 @@ import {
   MeshTransmissionMaterial,
 } from '@react-three/drei'
 
-const ProjectTitle = ({ title, position }: { title: string; position: THREE.Vector3 }) => {
+const ProjectTitle = ({ title, position, scale }) => {
   const titleArray = title.split(' ')
   // create strings with a max length of 25 characters from the titleArray and push them into the titleLines array
   const titleLines = []
@@ -23,7 +23,7 @@ const ProjectTitle = ({ title, position }: { title: string; position: THREE.Vect
   titleLines.push(titleLine)
   return (
     <Float>
-      <group position={position}>
+      <group position={position} scale={scale}>
         <Center>
           <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
             <mesh>
@@ -41,7 +41,7 @@ const ProjectTitle = ({ title, position }: { title: string; position: THREE.Vect
                 distortion={0}
                 distortionScale={0.1}
                 temporalDistortion={0.01}
-                clearcoat={.1}
+                clearcoat={0.1}
                 attenuationDistance={0.1}
                 attenuationColor='#fff'
                 color='#fff'

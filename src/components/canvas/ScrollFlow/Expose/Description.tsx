@@ -1,18 +1,16 @@
-
 import { PortableText } from '@portabletext/react'
 import { Float, Html, useScroll } from '@react-three/drei'
 import { useRef, useState } from 'react'
 import styles from './Laptop.module.scss'
 import * as THREE from 'three'
 
-const Description = ({ currentProject, setCurrentProject, projects }) => {
+const Description = ({ currentProject, setCurrentProject, projects, position, scale, rotation }) => {
   const descriptionContainer = useRef<THREE.Group>()
   const scroll = useScroll()
   return (
-    <group ref={descriptionContainer} position={[4, -1, -4]}>
+    <group ref={descriptionContainer} position={position} scale={scale} rotation={rotation}>
       <Float>
         <Html
-          rotation={[0, -Math.PI / 4, 0]}
           transform
           center
           position-z={0.1}

@@ -8,7 +8,7 @@ import LoadingDom from '@/components/dom/Loading/LoadingDom'
 import styles from './Laptop.module.scss'
 
 
-export default function Laptop({ link }) {
+export default function Laptop({ link, position, scale }) {
   const laptop = useRef<THREE.Group>()
 
   const display = useRef<THREE.Group>()
@@ -20,14 +20,16 @@ export default function Laptop({ link }) {
   
   const scroll = useScroll()
   return (
-    <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
+    <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}
+    
+    >
       <Float>
         <group
           ref={laptop}
           dispose={null}
-          position={[-1.5, -1, 0]}
+          position={position}
           rotation={[Math.PI / 16, Math.PI / 8, 0]}
-          scale={0.2}
+          scale={0.2 * scale}
         >
           <group position={[0, 0.52, 0]}>
             <mesh geometry={nodes.Circle001.geometry} material={nodes.Circle001.material} />
