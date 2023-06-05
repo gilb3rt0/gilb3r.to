@@ -46,7 +46,7 @@ const Contact = () => {
     }
   })
   return (
-    <group position={[50, -50, -200]} ref={contact}>
+    <group position={[100, -50, -200]} ref={contact}>
       <group ref={successMsg} visible={sent}>
         <Center>
           <Text3D
@@ -136,23 +136,23 @@ const Contact = () => {
             >
               {({ isSubmitting, errors, setErrors }) => {
                 useEffect(() => {
-                  // if (errors.email) {
-                  //   setTimeout(() => {
-                  //     setErrors({ email: null })
-                  //   }, 5000)
-                  // } else if (errors.name) {
-                  //   setTimeout(() => {
-                  //     setErrors({ name: null })
-                  //   }, 5000)
-                  // } else if (errors.subject) {
-                  //   setTimeout(() => {
-                  //     setErrors({ subject: null })
-                  //   }, 5000)
-                  // } else if (errors.message) {
-                  //   setTimeout(() => {
-                  //     setErrors({ message: null })
-                  //   }, 5000)
-                  // }
+                  if (errors.email) {
+                    setTimeout(() => {
+                      setErrors({ email: null })
+                    }, 5000)
+                  } else if (errors.name) {
+                    setTimeout(() => {
+                      setErrors({ name: null })
+                    }, 5000)
+                  } else if (errors.subject) {
+                    setTimeout(() => {
+                      setErrors({ subject: null })
+                    }, 5000)
+                  } else if (errors.message) {
+                    setTimeout(() => {
+                      setErrors({ message: null })
+                    }, 5000)
+                  }
                 }, [errors])
 
                 return (

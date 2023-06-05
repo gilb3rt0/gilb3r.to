@@ -7,7 +7,7 @@ import {
   MeshTransmissionMaterial,
 } from '@react-three/drei'
 
-const ProjectTitle = ({ title, y }: { title: string; y: number }) => {
+const ProjectTitle = ({ title, position }: { title: string; position: THREE.Vector3 }) => {
   const titleArray = title.split(' ')
   // create strings with a max length of 25 characters from the titleArray and push them into the titleLines array
   const titleLines = []
@@ -23,24 +23,25 @@ const ProjectTitle = ({ title, y }: { title: string; y: number }) => {
   titleLines.push(titleLine)
   return (
     <Float>
-      <group rotation-y={-Math.PI / 8} position={[2.5, 2, 0]}>
+      <group position={position}>
         <Center>
           <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
             <mesh>
-              <sphereGeometry args={[1.75, 64]} />
+              <sphereGeometry args={[2, 64]} />
               <MeshTransmissionMaterial
+                envMapIntensity={0.1}
                 samples={10}
                 resolution={2048}
                 transmission={1}
                 roughness={0}
-                thickness={0.5}
+                thickness={0.75}
                 ior={1.5}
                 chromaticAberration={0.0}
                 anisotropy={0.1}
-                distortion={0.0}
+                distortion={0}
                 distortionScale={0.1}
-                temporalDistortion={0.1}
-                clearcoat={1}
+                temporalDistortion={0.01}
+                clearcoat={.1}
                 attenuationDistance={0.1}
                 attenuationColor='#fff'
                 color='#fff'
@@ -51,7 +52,7 @@ const ProjectTitle = ({ title, y }: { title: string; y: number }) => {
                     <group position-y={0 - index * 0.25} key={index}>
                       <Center>
                         <Text3D
-                          font={'/fonts/Basteleur Moonlight_Regular.json'}
+                          font='/fonts/Pilowlava_Regular.json'
                           curveSegments={12}
                           bevelEnabled
                           height={0.1}
@@ -67,7 +68,7 @@ const ProjectTitle = ({ title, y }: { title: string; y: number }) => {
                             resolution={1024}
                             args={[{ color: '#fff' }]}
                           />
-                          {line}
+                          {line.toUpperCase()}
                         </Text3D>
                       </Center>
                     </group>

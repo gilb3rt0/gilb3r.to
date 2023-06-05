@@ -1,3 +1,4 @@
+
 'use client'
 import React, { useRef, Suspense } from 'react'
 import { useGLTF, Html, PresentationControls, Float, useScroll } from '@react-three/drei'
@@ -6,9 +7,9 @@ import LoadingDom from '@/components/dom/Loading/LoadingDom'
 
 import styles from './Laptop.module.scss'
 
+
 export default function Laptop({ link }) {
   const laptop = useRef<THREE.Group>()
-  const scroll = useScroll()
 
   const display = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF(
@@ -16,6 +17,8 @@ export default function Laptop({ link }) {
   ) as any
 
   //  divide the title by length into an array of lines with maximum 15 characters per array ond do not break words
+  
+  const scroll = useScroll()
   return (
     <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
       <Float>
@@ -24,7 +27,7 @@ export default function Laptop({ link }) {
           dispose={null}
           position={[-1.5, -1, 0]}
           rotation={[Math.PI / 16, Math.PI / 8, 0]}
-          scale={0.15}
+          scale={0.2}
         >
           <group position={[0, 0.52, 0]}>
             <mesh geometry={nodes.Circle001.geometry} material={nodes.Circle001.material} />
@@ -78,6 +81,7 @@ export default function Laptop({ link }) {
                   className={styles.Screen}
                   occlude='blending'
                   portal={{ current: scroll.fixed }}
+
                 >
                   <Suspense fallback={<LoadingDom />}>
                     <iframe title='embed' src={link} />
