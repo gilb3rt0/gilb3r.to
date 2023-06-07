@@ -10,54 +10,52 @@ const Description = ({ currentProject, setCurrentProject, projects, position, sc
 
   return (
     <group ref={descriptionContainer} position={position} scale={scale} rotation={rotation}>
-      <Float>
-        <Html transform center occlude className={styles.Description} portal={{ current: scroll.fixed }}>
-          <PortableText value={projects[currentProject].description} />
+      <Html transform center occlude className={styles.Description} portal={{ current: scroll.fixed }}>
+        <PortableText value={projects[currentProject].description} />
+      </Html>
+      <group position={[-1, -2, 2]}>
+        <Html
+          position={[-3, 0, 0]}
+          occlude
+          transform
+          center
+          className={styles.Button}
+          portal={{ current: scroll.fixed }}
+        >
+          <button
+            onClick={() => {
+              setCurrentProject(currentProject - 1)
+              if (currentProject === 0) {
+                setCurrentProject(projects.length - 1)
+              }
+            }}
+          >
+            prev
+          </button>
         </Html>
-        <group position={[-1, -2, 2]}>
-          <Html
-            position={[-3, 0, 0]}
-            occlude
-            transform
-            center
-            className={styles.Button}
-            portal={{ current: scroll.fixed }}
+        <Html
+          position={[3, 0, 0]}
+          occlude
+          transform
+          center
+          position-z={0.1}
+          castShadow
+          receiveShadow
+          className={styles.Button}
+          portal={{ current: scroll.fixed }}
+        >
+          <button
+            onClick={() => {
+              setCurrentProject(currentProject + 1)
+              if (currentProject === projects.length - 1) {
+                setCurrentProject(0)
+              }
+            }}
           >
-            <button
-              onClick={() => {
-                setCurrentProject(currentProject - 1)
-                if (currentProject === 0) {
-                  setCurrentProject(projects.length - 1)
-                }
-              }}
-            >
-              prev
-            </button>
-          </Html>
-          <Html
-            position={[3, 0, 0]}
-            occlude
-            transform
-            center
-            position-z={0.1}
-            castShadow
-            receiveShadow
-            className={styles.Button}
-            portal={{ current: scroll.fixed }}
-          >
-            <button
-              onClick={() => {
-                setCurrentProject(currentProject + 1)
-                if (currentProject === projects.length - 1) {
-                  setCurrentProject(0)
-                }
-              }}
-            >
-              next
-            </button>
-          </Html>
-        </group>
-      </Float>
+            next
+          </button>
+        </Html>
+      </group>
     </group>
   )
 }

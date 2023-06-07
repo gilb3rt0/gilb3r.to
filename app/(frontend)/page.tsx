@@ -6,12 +6,10 @@ import { getProjects, getTechnologies } from '@/sanity/utils'
 export default async function Page() {
   const projects = await getProjects()
   const technologies = await getTechnologies()
-  console.log(technologies);
-  
 
   return (
     <Scene>
-      <ScrollFlow projects={projects} />
+      <ScrollFlow projects={projects} technologies={technologies} />
     </Scene>
   )
 }

@@ -22,7 +22,7 @@ export const getProjects = async (): Promise<ProjectType[]> => {
 }
 
 export const getTechnologies = async (): Promise<TechnologyType[]> => {
-  const query = `*[_type == "technologies"]|order(orderRank){
+  const query = `*[_type == "technology"]|order(orderRank){
         _id,
         _createdAt,
         name,

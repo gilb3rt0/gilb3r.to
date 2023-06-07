@@ -8,17 +8,18 @@ import Expose from './Expose/Expose'
 import InfoScene from './InfoSection/InfoScene'
 import Contact from './Contact/Contact'
 import FloatingG from '../FloatingG'
+import Stack from './Stack/Stack'
 
-const ScrollFlow = ({ projects }) => {
-  const { size } = useThree()
-  const { width } = size
+const ScrollFlow = ({ projects, technologies }) => {
   return (
     <Suspense fallback={<Loading3D />}>
       <PerspectiveCamera makeDefault fov={45} />
       <Background colorA='#6446DB' colorB='#B0A6DA' />
       <Environment preset='warehouse' />
-      {/* <FloatingG /> */}
-      <ScrollControls pages={3}>
+      <FloatingG />
+      {/* <OrbitControls /> */}
+      <ScrollControls pages={4}>
+        <Stack technologies={technologies} />
         <InfoScene />
         <Expose projects={projects} />
         <Contact />

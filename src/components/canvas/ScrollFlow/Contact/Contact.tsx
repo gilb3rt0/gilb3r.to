@@ -35,7 +35,7 @@ const Contact = () => {
       )
       const offViewportPos = new THREE.Vector3(100, 0, 0)
       const inViewportPos = new THREE.Vector3(0, 0, 0)
-      if (offset > (1 / 3) * 2) {
+      if (offset > 3 / 4) {
         camera.position.lerp(camerapos, 0.05)
         camera.lookAt(contact.current.position)
       }

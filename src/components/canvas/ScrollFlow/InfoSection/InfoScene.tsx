@@ -15,6 +15,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import styles from './InfoSection.module.scss'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BounceDown } from '@/components/dom/Framer/Animations'
+import WhiteBlackText from '../../WhiteBlackText'
 
 const InfoScene = () => {
   const capsule = useRef<THREE.Group>()
@@ -33,18 +34,37 @@ const InfoScene = () => {
         infoScene.current.position.y,
         infoScene.current.position.z + 20,
       )
-      if (offset < 1 / 3) {
+      const stackpos = new THREE.Vector3(-100, 0, 0)
+      const capsulepos = new THREE.Vector3(isMobile ? 0 : 4, isMobile ? 4 : 0, 0)
+
+      if (offset < 1 / 4) {
         camera.position.lerp(camerapos, 0.05)
-      } else {
-        capsule.current.rotation.y += 0.01
+        capsule.current.position.lerp(capsulepos, 0.05)
+      }
+      if (offset > 1 / 4 && offset < 1 / 2) {
+        capsule.current.position.lerp(stackpos, 0.05)
       }
     }
   })
+  const infoText = `My name is Gilberto and I am a full-stack web developer leaning towards the front-end, based in Berlin. I am passionate about creating beautiful, functional websites and applications.`
+
+  const infoTextArray = infoText.split(' ')
+  const infoTextLines = []
+  let infoTextLine = ''
+  for (let i = 0; i < infoTextArray.length; i++) {
+    if (infoTextLine.length + infoTextArray[i].length < 25) {
+      infoTextLine += infoTextArray[i] + ' '
+    } else {
+      infoTextLines.push(infoTextLine)
+      infoTextLine = infoTextArray[i] + ' '
+    }
+  }
+  infoTextLines.push(infoTextLine)
 
   return (
     <group ref={infoScene} scale={isMobile ? 1 : 2}>
       <Float>
-        <group position={isMobile ? [0, -3, 0] : [-3, -1, 0]}>
+        <group position={isMobile ? [0, -3, 0] : [-3, -0.5, 0]}>
           <group position-y={3}>
             <Center>
               <Text3D
@@ -67,28 +87,18 @@ const InfoScene = () => {
                 HELLO!
               </Text3D>
             </Center>
+            <group position-y={-1.5}>
+              <Float floatIntensity={0.1} speed={0.25}>
+                {infoTextLines.map((text, index) => (
+                  <WhiteBlackText text={text} index={index} />
+                ))}
+              </Float>
+            </group>
           </group>
-          <Html transform className={styles.InfoScene} portal={{ current: scroll.fixed }}>
-            <motion.div
-              className={styles.InfoScene}
-              variants={BounceDown}
-              initial='hidden'
-              animate='visible'
-              exit='hidden'
-            >
-              <motion.p variants={BounceDown}>
-                My name is <motion.span variants={BounceDown}>Gilberto</motion.span> and I am a full-stack web developer
-                based in Berlin.
-              </motion.p>
-              <motion.p variants={BounceDown}>
-                I am passionate about creating beautiful and functional websites and applications.
-              </motion.p>
-            </motion.div>
-          </Html>
         </group>
       </Float>
       <Float>
-        <group ref={capsule} position={isMobile ? [0, 4, 0] : [3, 0, 0]} scale={2.5}>
+        <group ref={capsule} position={isMobile ? [0, 4, 0] : [4, 0, 0]} scale={2.5}>
           <mesh>
             <MeshTransmissionMaterial
               envMapIntensity={0.1}
