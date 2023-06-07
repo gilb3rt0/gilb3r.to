@@ -7,17 +7,11 @@ import * as THREE from 'three'
 const Description = ({ currentProject, setCurrentProject, projects, position, scale, rotation }) => {
   const descriptionContainer = useRef<THREE.Group>()
   const scroll = useScroll()
+
   return (
     <group ref={descriptionContainer} position={position} scale={scale} rotation={rotation}>
       <Float>
-        <Html
-          transform
-          center
-          position-z={0.1}
-          occlude
-          className={styles.Description}
-          portal={{ current: scroll.fixed }}
-        >
+        <Html transform center occlude className={styles.Description} portal={{ current: scroll.fixed }}>
           <PortableText value={projects[currentProject].description} />
         </Html>
         <group position={[-1, -2, 2]}>
@@ -26,8 +20,6 @@ const Description = ({ currentProject, setCurrentProject, projects, position, sc
             occlude
             transform
             center
-            castShadow
-            receiveShadow
             className={styles.Button}
             portal={{ current: scroll.fixed }}
           >

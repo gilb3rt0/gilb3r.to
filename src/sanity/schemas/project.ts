@@ -4,6 +4,10 @@ export const project = {
   type: 'document',
   fields: [
     {
+      name: 'orderRank',
+      type: 'string',
+    },
+    {
       name: 'title',
       title: 'Project Title',
       type: 'string',

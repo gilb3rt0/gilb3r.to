@@ -7,10 +7,10 @@ import * as THREE from 'three'
 const Memoji = () => {
   const textures = useTexture([
     '/textures/memoji_hand.png',
-    '/textures/memoji_laptop.png',
-    '/textures/memoji_talk2hand.png',
-    '/textures/memoji_cute.png',
     '/textures/memoji_bulb.png',
+    '/textures/memoji_laptop.png',
+    '/textures/memoji_laptop.png',
+    '/textures/memoji_laptop.png',
     '/textures/memoji_laptop.png',
   ])
   const materials = textures.map((texture) => {
@@ -24,7 +24,7 @@ const Memoji = () => {
   useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01
-      mesh.current.rotation.z += 0.005
+      // mesh.current.rotation.z += 0.005
     }
   })
   return (

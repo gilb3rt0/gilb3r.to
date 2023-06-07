@@ -97,19 +97,18 @@ const InfoScene = () => {
               transmission={1}
               roughness={0}
               thickness={0.5}
-              ior={3.5}
+              ior={2}
               chromaticAberration={0.0}
               anisotropy={0.1}
               distortion={0.3}
-              distortionScale={0.1}
+              distortionScale={0.01}
               temporalDistortion={0.01}
               clearcoat={1}
               attenuationDistance={0.1}
               attenuationColor='#fff'
               color='#fff'
             />
-            <sphereGeometry args={[1, 32, 32]} />
-
+            <sphereGeometry args={[0.8, 32, 32]} />
             <Memoji />
           </mesh>
         </group>

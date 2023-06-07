@@ -6,6 +6,9 @@ import {
   PresentationControls,
   MeshTransmissionMaterial,
 } from '@react-three/drei'
+import { useMemo } from 'react'
+import * as THREE from 'three'
+import WhiteBlackText from '@/components/canvas/WhiteBlackText'
 
 const ProjectTitle = ({ title, position, scale }) => {
   const titleArray = title.split(' ')
@@ -21,61 +24,59 @@ const ProjectTitle = ({ title, position, scale }) => {
     }
   }
   titleLines.push(titleLine)
+  // get all characters in the title
+  const titleCharacters = useMemo(() => {
+    const characters = []
+    for (let i = 0; i < title.length; i++) {
+      characters.push(title.charAt(i))
+    }
+    return characters
+  }, [title])
+
+  console.log(titleLines.length)
+
   return (
     <Float>
       <group position={position} scale={scale}>
         <Center>
           <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
-            <mesh>
-              <sphereGeometry args={[2, 64]} />
-              <MeshTransmissionMaterial
-                envMapIntensity={0.1}
-                samples={10}
-                resolution={2048}
-                transmission={1}
-                roughness={0}
-                thickness={0.75}
-                ior={1.5}
-                chromaticAberration={0.0}
-                anisotropy={0.1}
-                distortion={0}
-                distortionScale={0.1}
-                temporalDistortion={0.01}
-                clearcoat={0.1}
-                attenuationDistance={0.1}
-                attenuationColor='#fff'
-                color='#fff'
-              />
-              <Center>
-                <group>
-                  {titleLines.map((line, index) => (
-                    <group position-y={0 - index * 0.25} key={index}>
-                      <Center>
-                        <Text3D
-                          font='/fonts/Pilowlava_Regular.json'
-                          curveSegments={12}
-                          bevelEnabled
-                          height={0.1}
-                          size={0.2}
-                          letterSpacing={0.02}
-                        >
-                          <MeshReflectorMaterial
-                            mirror={0.5}
-                            metalness={0.9}
-                            roughness={0.01}
-                            blur={[0, 0]}
-                            distortion={0.1}
-                            resolution={1024}
-                            args={[{ color: '#fff' }]}
-                          />
-                          {line.toUpperCase()}
-                        </Text3D>
-                      </Center>
-                    </group>
-                  ))}
-                </group>
-              </Center>
-            </mesh>
+            <Center>
+              <group>
+                <mesh>
+                  <boxGeometry
+                    args={[
+                      titleLines.length > 1 ? titleLines.length * 1.5 : titleCharacters.length * 0.5,
+                      titleLines.length * 0.75,
+                      titleLines.length / 2,
+                    ]}
+                  />
+                  <MeshTransmissionMaterial
+                    envMapIntensity={0.1}
+                    samples={10}
+                    resolution={2048}
+                    transmission={1}
+                    roughness={0.125}
+                    thickness={0.5}
+                    ior={2}
+                    chromaticAberration={0.0}
+                    anisotropy={0.1}
+                    distortion={0.3}
+                    distortionScale={0.01}
+                    temporalDistortion={0.01}
+                    clearcoat={1}
+                    attenuationDistance={0.1}
+                    attenuationColor='#fff'
+                    color='#fff'
+                  />
+                  <group position-y={titleLines.length > 1 && titleLines.length * 0.25}>
+                    {titleLines.map((line, index) => {
+                      return <WhiteBlackText text={line} index={index} key={index} />
+                    })}
+                  </group>
+                </mesh>
+              </group>
+            </Center>
+            {/* </mesh> */}
           </PresentationControls>
         </Center>
       </group>

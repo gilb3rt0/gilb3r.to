@@ -4,7 +4,6 @@
   overflow: hidden;
   @media screen and (max-width: 768px) {
     margin-top: -150px;
-    
   }
   iframe {
     height: 100%;
@@ -16,6 +15,7 @@
 .Description {
   width: 15rem;
   height: 10rem;
+  scale: 1.1;
   overflow-y: scroll;
   color: white;
   font-family: var(--primary-font);

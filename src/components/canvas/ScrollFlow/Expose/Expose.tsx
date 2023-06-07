@@ -43,7 +43,7 @@ const Expose = ({ projects }) => {
       />
       <ProjectTitle
         title={projects[currentProject].title}
-        position={isMobile ? [1, 0, 5] : [3, 3, 0]}
+        position={isMobile ? [1, 0, 5] : [3, 2, 0]}
         scale={isMobile ? 0.25 : 1}
       />
     </group>
