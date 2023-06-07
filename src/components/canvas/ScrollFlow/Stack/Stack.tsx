@@ -24,7 +24,7 @@ const Stack = ({ technologies }) => {
   })
 
   return (
-    <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, 0]}>
+    <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, -Math.PI * 0.1]}>
       5
       {technologies?.map((tech, i) => {
         const mesh = useRef<THREE.Mesh>()

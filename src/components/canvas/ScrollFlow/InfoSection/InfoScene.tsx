@@ -34,7 +34,7 @@ const InfoScene = () => {
         infoScene.current.position.y,
         infoScene.current.position.z + 20,
       )
-      const stackpos = new THREE.Vector3(-100, 0, 0)
+      const stackpos = new THREE.Vector3(-50, 0, 0)
       const capsulepos = new THREE.Vector3(isMobile ? 0 : 4, isMobile ? 4 : 0, 0)
 
       if (offset < 1 / 4) {
