@@ -5,6 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { Float, Html, useScroll, Text3D, MeshReflectorMaterial, Center } from '@react-three/drei'
 import styles from './Contact.module.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import LoadingDom from '@/components/dom/Loading/LoadingDom'
 const Contact = () => {
   const contact = useRef<THREE.Group>()
   const [sent, setSent] = useState<boolean>(false)
@@ -160,7 +161,9 @@ const Contact = () => {
                   }
                 }, [errors])
 
-                return (
+                return isSubmitting ? (
+                  <LoadingDom />
+                ) : (
                   <Form>
                     <div>
                       <ErrorMessage name='name' component='div' className={styles.Err} />

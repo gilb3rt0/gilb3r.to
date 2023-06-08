@@ -1,0 +1,29 @@
+.Container {
+  svg {
+    width: 3rem;
+    height: 3rem;
+    fill: white;
+    opacity: 0.35;
+    .ScrollWheel {
+      fill: white;
+      stroke: white;
+      stroke-width: 0.5rem;
+      animation: dash 2s infinite ease-in-out;
+    }
+  }
+}
+
+@keyframes dash {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3%);
+  }
+  90% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}

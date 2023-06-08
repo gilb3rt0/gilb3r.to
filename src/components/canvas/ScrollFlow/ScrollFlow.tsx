@@ -9,22 +9,26 @@ import InfoScene from './InfoSection/InfoScene'
 import Contact from './Contact/Contact'
 import FloatingG from '../FloatingG'
 import Stack from './Stack/Stack'
+import Mouse from '../Mouse/Mouse'
 
 const ScrollFlow = ({ projects, technologies }) => {
   return (
-    <Suspense fallback={<Loading3D />}>
-      <PerspectiveCamera makeDefault fov={45} />
+    <>
       <Background colorA='#6446DB' colorB='#B0A6DA' />
-      <Environment preset='warehouse' />
-      <FloatingG />
-      {/* <OrbitControls /> */}
-      <ScrollControls pages={4}>
-        <Stack technologies={technologies} />
-        <InfoScene />
-        <Expose projects={projects} />
-        <Contact />
-      </ScrollControls>
-    </Suspense>
+      <Suspense fallback={<Loading3D />}>
+        <PerspectiveCamera makeDefault fov={45} position={[-200, -200, -200]} />
+        <Environment preset='warehouse' />
+        <FloatingG />
+
+        <ScrollControls pages={4}>
+          <Mouse />
+          <Stack technologies={technologies} />
+          <InfoScene />
+          <Expose projects={projects} />
+          <Contact />
+        </ScrollControls>
+      </Suspense>
+    </>
   )
 }
 

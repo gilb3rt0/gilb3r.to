@@ -1,8 +1,10 @@
+//@ts-nocheck
 'use client'
-import { useScroll, useTexture } from '@react-three/drei'
+import { Center, useScroll, useTexture } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
+import WhiteBlackText from '../../WhiteBlackText'
 
 const Stack = ({ technologies }) => {
   const { camera } = useThree()
@@ -25,7 +27,18 @@ const Stack = ({ technologies }) => {
 
   return (
     <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, -Math.PI * 0.1]}>
-      5
+      <group position-y={4.5} scale={1.5}>
+        <group position-y={0.5}>
+          <Center>
+            <WhiteBlackText text='I Like working with' index={0} />
+          </Center>
+        </group>
+        <group position-y={0}>
+          <Center>
+            <WhiteBlackText text='these technologies' index={0} />
+          </Center>
+        </group>
+      </group>
       {technologies?.map((tech, i) => {
         const mesh = useRef<THREE.Mesh>()
         const texture = useTexture(tech.logo)
@@ -44,10 +57,12 @@ const Stack = ({ technologies }) => {
           }
         })
         return (
-          <mesh key={i} position={position} ref={mesh}>
-            <planeGeometry args={[2, 2]} />
-            <meshBasicMaterial map={texture} transparent />
-          </mesh>
+          texture && (
+            <mesh key={i} position={position} ref={mesh}>
+              <planeGeometry args={[2, 2]} />
+              <meshBasicMaterial map={texture} transparent />
+            </mesh>
+          )
         )
       })}
     </group>

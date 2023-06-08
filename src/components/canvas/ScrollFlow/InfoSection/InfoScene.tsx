@@ -1,21 +1,10 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Memoji from './Memoji'
-import {
-  MeshTransmissionMaterial,
-  PresentationControls,
-  Float,
-  Html,
-  useScroll,
-  Center,
-  Text3D,
-  MeshReflectorMaterial,
-} from '@react-three/drei'
+import { MeshTransmissionMaterial, Float, useScroll, Center, Text3D, MeshReflectorMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import styles from './InfoSection.module.scss'
-import { AnimatePresence, motion } from 'framer-motion'
-import { BounceDown } from '@/components/dom/Framer/Animations'
 import WhiteBlackText from '../../WhiteBlackText'
+import Mouse from '@/components/canvas/Mouse/Mouse'
 
 const InfoScene = () => {
   const capsule = useRef<THREE.Group>()
@@ -27,6 +16,7 @@ const InfoScene = () => {
 
   useFrame(() => {
     const { offset } = scroll
+console.log(infoScene.current.position)
 
     if (infoScene.current) {
       const camerapos = new THREE.Vector3(
@@ -97,32 +87,31 @@ const InfoScene = () => {
           </group>
         </group>
       </Float>
-      <Float>
-        <group ref={capsule} position={isMobile ? [0, 4, 0] : [4, 0, 0]} scale={2.5}>
-          <mesh>
-            <MeshTransmissionMaterial
-              envMapIntensity={0.1}
-              samples={10}
-              resolution={2048}
-              transmission={1}
-              roughness={0}
-              thickness={0.5}
-              ior={2}
-              chromaticAberration={0.0}
-              anisotropy={0.1}
-              distortion={0.3}
-              distortionScale={0.01}
-              temporalDistortion={0.01}
-              clearcoat={1}
-              attenuationDistance={0.1}
-              attenuationColor='#fff'
-              color='#fff'
-            />
-            <sphereGeometry args={[0.8, 32, 32]} />
-            <Memoji />
-          </mesh>
-        </group>
-      </Float>
+
+      <group ref={capsule} position={isMobile ? [0, 4, 0] : [4, 0, 0]} scale={2.5}>
+        <mesh>
+          <MeshTransmissionMaterial
+            envMapIntensity={0.1}
+            samples={10}
+            resolution={2048}
+            transmission={1}
+            roughness={0}
+            thickness={0.5}
+            ior={2}
+            chromaticAberration={0.0}
+            anisotropy={0.1}
+            distortion={0.3}
+            distortionScale={0.01}
+            temporalDistortion={0.01}
+            clearcoat={1}
+            attenuationDistance={0.1}
+            attenuationColor='#fff'
+            color='#fff'
+          />
+          <sphereGeometry args={[0.8, 32, 32]} />
+          <Memoji />
+        </mesh>
+      </group>
     </group>
   )
 }
