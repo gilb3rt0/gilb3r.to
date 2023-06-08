@@ -6,13 +6,10 @@ import * as THREE from 'three'
 import WhiteBlackText from '../../WhiteBlackText'
 import { TechnologyType } from '@/sanity/types'
 
-const Tech = ({ tech, index, technologies, i }) => {
+const Tech = ({ tech, technologies, i }) => {
   const mesh = useRef<THREE.Mesh>()
-  const texture = useTexture(tech.logo)
-  console.log(tech.logo)
 
   const aspectRatio = tech.logo.split('-')[1].split('x')[1].split('.')[0] / tech.logo.split('-')[1].split('x')[0]
-  console.log(aspectRatio)
   const width = 2
   const height = width * aspectRatio
   const radius = 10
@@ -70,7 +67,7 @@ const Stack = ({ technologies }) => {
         </group>
       </group>
       {technologies?.map((tech: TechnologyType, i: number) => (
-        <Tech key={i} tech={tech} index={0} technologies={technologies} i={i} />
+        <Tech key={i} tech={tech} technologies={technologies} i={i} />
       ))}
     </group>
   )
