@@ -30,8 +30,8 @@ const Mouse = () => {
       setScrollIndicator(true)
     }, 3000)
   }, [])
-  const x = viewport.width / 2.25
-  const y = -viewport.height / 2.5
+  const x = isMobile ? viewport.width / 3 : viewport.width / 2.25
+  const y = isMobile ? viewport.height / 4 : -viewport.height / 2.5
   const hidePosition = new THREE.Vector3(100, 100, 100)
   const infoPosition = new THREE.Vector3(x, y, 0)
   const stackPosition = new THREE.Vector3(-100 + x, 0 + y, 0)

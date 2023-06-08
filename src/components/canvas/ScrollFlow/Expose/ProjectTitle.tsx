@@ -33,8 +33,6 @@ const ProjectTitle = ({ title, position, scale }) => {
     return characters
   }, [title])
 
-  console.log(titleLines.length)
-
   return (
     <group position={position} scale={scale}>
       <Center>

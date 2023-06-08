@@ -38,11 +38,9 @@ export async function POST(req: Request, res: Response) {
   await transporter
     .sendMail(mailData)
     .catch((err) => {
-      console.error("mailgun error: ",err)
-      return new Response('Error sending email', { status: 500 })
+      return new Response(err, { status: 500 })
     })
     .then((success) => {
-      console.log('Email sent', success)
-      return new Response('OK', { status: 200 })
+      return new Response(success, { status: 200 })
     })
 }

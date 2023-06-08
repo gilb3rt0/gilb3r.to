@@ -133,34 +133,13 @@ const Contact = () => {
                   },
                   body: JSON.stringify(values),
                 })
-                console.log(res)
 
                 setSubmitting(false)
                 setSent(true)
                 setValues({ name: '', subject: '', email: '', message: '' })
               }}
             >
-              {({ isSubmitting, errors, setErrors }) => {
-                useEffect(() => {
-                  if (errors.email) {
-                    setTimeout(() => {
-                      setErrors({ email: null })
-                    }, 5000)
-                  } else if (errors.name) {
-                    setTimeout(() => {
-                      setErrors({ name: null })
-                    }, 5000)
-                  } else if (errors.subject) {
-                    setTimeout(() => {
-                      setErrors({ subject: null })
-                    }, 5000)
-                  } else if (errors.message) {
-                    setTimeout(() => {
-                      setErrors({ message: null })
-                    }, 5000)
-                  }
-                }, [errors])
-
+              {({ isSubmitting }) => {
                 return isSubmitting ? (
                   <LoadingDom />
                 ) : (

@@ -80,7 +80,7 @@ console.log(infoScene.current.position)
             <group position-y={-1.5}>
               <Float floatIntensity={0.1} speed={0.25}>
                 {infoTextLines.map((text, index) => (
-                  <WhiteBlackText text={text} index={index} />
+                  <WhiteBlackText text={text} index={index} key={index} />
                 ))}
               </Float>
             </group>

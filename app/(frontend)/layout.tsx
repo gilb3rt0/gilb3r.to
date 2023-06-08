@@ -1,4 +1,3 @@
-import { Layout } from '@/components/dom/Layout'
 import './global.scss'
 
 export const metadata = {

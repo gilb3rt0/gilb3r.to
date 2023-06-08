@@ -56,8 +56,10 @@
     height: 4rem;
     width: 4rem;
     border-radius: 50%;
-    &:hover {
-      scale: 1.5;
+    @media screen and (min-width: 768px) {
+      &:hover {
+        scale: 1.5;
+      }
     }
   }
 }
