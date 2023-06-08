@@ -16,7 +16,6 @@ const InfoScene = () => {
 
   useFrame(() => {
     const { offset } = scroll
-console.log(infoScene.current.position)
 
     if (infoScene.current) {
       const camerapos = new THREE.Vector3(

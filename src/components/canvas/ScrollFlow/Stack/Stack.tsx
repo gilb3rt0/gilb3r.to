@@ -1,16 +1,20 @@
-// @ts-nocheck
 'use client'
-import { Center, useScroll, useTexture } from '@react-three/drei'
+import { Center, useScroll, useTexture, Image } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
 import WhiteBlackText from '../../WhiteBlackText'
-
 import { TechnologyType } from '@/sanity/types'
 
 const Tech = ({ tech, index, technologies, i }) => {
   const mesh = useRef<THREE.Mesh>()
   const texture = useTexture(tech.logo)
+  console.log(tech.logo)
+
+  const aspectRatio = tech.logo.split('-')[1].split('x')[1].split('.')[0] / tech.logo.split('-')[1].split('x')[0]
+  console.log(aspectRatio)
+  const width = 2
+  const height = width * aspectRatio
   const radius = 10
   const theta = (2 * Math.PI * i) / technologies.length
   const x = radius * Math.cos(theta)
@@ -26,10 +30,9 @@ const Tech = ({ tech, index, technologies, i }) => {
     }
   })
   return (
-    <mesh key={i} position={position} ref={mesh}>
-      <planeGeometry args={[2, 2]} />
-      <meshBasicMaterial map={texture} transparent />
-    </mesh>
+    <>
+      <Image key={i} position={position} ref={mesh} url={tech.logo} transparent scale={[width, height]} />
+    </>
   )
 }
 

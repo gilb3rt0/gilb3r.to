@@ -1,4 +1,3 @@
-import Background from '@/components/canvas/Background'
 import Scene from '@/components/canvas/Scene'
 import ScrollFlow from '@/components/canvas/ScrollFlow/ScrollFlow'
 import { getProjects, getTechnologies } from '@/sanity/utils'
