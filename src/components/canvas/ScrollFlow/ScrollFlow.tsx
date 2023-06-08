@@ -2,7 +2,7 @@
 import { Environment, PerspectiveCamera, OrbitControls, ScrollControls } from '@react-three/drei'
 import { Suspense } from 'react'
 import Loading3D from '@/components/canvas/Loading/Loading3D'
-import { useThree } from '@react-three/fiber'
+
 import Background from '@/components/canvas/Background'
 import Expose from './Expose/Expose'
 import InfoScene from './InfoSection/InfoScene'
@@ -17,7 +17,7 @@ const ScrollFlow = ({ projects, technologies }) => {
       <Background colorA='#6446DB' colorB='#B0A6DA' />
       <Suspense fallback={<Loading3D />}>
         <PerspectiveCamera makeDefault fov={45} position={[-200, -200, -200]} />
-        <Environment preset='warehouse' />
+        <Environment files={'/img/empty_warehouse_01_1k.hdr'} />
         <FloatingG />
 
         <ScrollControls pages={4}>
