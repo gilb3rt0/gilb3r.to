@@ -1,7 +1,6 @@
 'use client'
 import { Canvas } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
-import { Perf } from 'r3f-perf'
 
 export default function Scene({ children }) {
   return (
@@ -12,7 +11,6 @@ export default function Scene({ children }) {
       }}
     >
       <Canvas>
-        <Perf />
         {children}
         <Preload all />
       </Canvas>
