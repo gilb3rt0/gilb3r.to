@@ -1,14 +1,21 @@
 .Container {
-  svg {
-    width: 3rem;
-    height: 3rem;
-    fill: white;
-    opacity: 0.35;
-    .ScrollWheel {
+  color: white;
+  font-family: var(--primary-font);
+  opacity: 0.5;
+  div {
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 3rem;
+      height: 3rem;
       fill: white;
-      stroke: white;
-      stroke-width: 0.5rem;
-      animation: dash 1s infinite ease-in-out;
+      .ScrollWheel {
+        fill: white;
+        stroke: white;
+        stroke-width: 0.5rem;
+        animation: dash 1s infinite ease-in-out;
+      }
     }
   }
 }

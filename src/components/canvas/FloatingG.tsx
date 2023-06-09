@@ -4,7 +4,7 @@ import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 
 const FloatingG = () => {
-  const count = 3000
+  const count = 1000
   const texture = useTexture('/img/g_alpha.jpg')
   const cloud = useRef<THREE.Points>()
   useFrame(() => {
@@ -12,7 +12,7 @@ const FloatingG = () => {
       cloud.current.rotation.y += 0.001
     }
   })
-  const radius = 100
+  const radius = 250
 
   const points = useMemo(() => {
     const p = new Array(count).fill(0).map((v) => (0.5 - Math.random()) * radius)
@@ -38,14 +38,10 @@ const FloatingG = () => {
         color={'#ffffff'}
         sizeAttenuation={true}
         opacity={0.5}
+        size={10}
       />
     </points>
   )
-  // return (
-  //   <Points positions={points} colors={colors} sizes={sizes} ref={cloud}>
-  //     <pointsMaterial alphaMap={texture} transparent depthWrite={false} vertexColors />
-  //   </Points>
-  // )
 }
 
 export default FloatingG
