@@ -39,10 +39,11 @@ const Stack = ({ technologies }) => {
   const stack = useRef<THREE.Group>()
 
   const isMobile = size.width < 768
-
+  
   useFrame(() => {
     const { offset } = scroll
     if (stack.current) {
+      console.log(stack.current.position);
       const camerapos = new THREE.Vector3(
         stack.current.position.x,
         stack.current.position.y,
@@ -55,10 +56,8 @@ const Stack = ({ technologies }) => {
   })
 
   return (
-    <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, -Math.PI * 0.1]}
-    scale={isMobile ? 0.5 : 1}
-    >
-      <group position-y={4.5} scale={1.5}>
+    <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, -Math.PI * 0.1]} scale={isMobile ? 0.5 : 1}>
+      <group position-y={isMobile ? 6 : 4.5} scale={1.5}>
         <group position-y={0.5}>
           <Center>
             <WhiteBlackText text='I Like working with' index={0} />

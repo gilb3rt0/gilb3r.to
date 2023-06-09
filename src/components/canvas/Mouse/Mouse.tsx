@@ -48,8 +48,6 @@ const Mouse = () => {
         }
         if (offset > 1 / 4 && offset < 1 / 2) {
           indicator.current.position.lerp(stackPosition, 0.05)
-          console.log('stackPosition: ', stackPosition)
-          console.log('indicator position: ', indicator.current.position)
         }
         if (offset > 1 / 2 && offset < 3 / 4) {
           indicator.current.position.lerp(exposePosition, 0.05)

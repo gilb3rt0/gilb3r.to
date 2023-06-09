@@ -1,4 +1,4 @@
-import { useTexture, Points } from '@react-three/drei'
+import { useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
@@ -22,17 +22,12 @@ const FloatingG = () => {
     const c = new Array(count).fill(0).map((v) => 0.1 + Math.random() * 0.5)
     return new THREE.BufferAttribute(new Float32Array(c), 3)
   }, [count])
-  const sizes = useMemo(() => {
-    const s = new Array(count).fill(0).map((v) => Math.random() * 50)
-    return new THREE.BufferAttribute(new Float32Array(s), 1)
-  }, [count])
 
   return (
     <points ref={cloud}>
       <bufferGeometry>
         <bufferAttribute attach='attributes-position' {...points} />
         <bufferAttribute attach='attributes-color' {...colors} />
-        <bufferAttribute attach='attributes-size' {...sizes} needsUpdate />
       </bufferGeometry>
       <pointsMaterial
         needsUpdate

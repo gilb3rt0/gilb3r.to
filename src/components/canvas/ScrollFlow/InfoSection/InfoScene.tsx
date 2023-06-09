@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
-import Memoji from './Memoji'
+import { useRef } from 'react'
+import Memoji from './MemojiCube'
 import { MeshTransmissionMaterial, Float, useScroll, Center, Text3D, MeshReflectorMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import WhiteBlackText from '../../WhiteBlackText'
-import Mouse from '@/components/canvas/Mouse/Mouse'
 
 const InfoScene = () => {
   const capsule = useRef<THREE.Group>()
@@ -23,7 +22,8 @@ const InfoScene = () => {
         infoScene.current.position.y,
         infoScene.current.position.z + 20,
       )
-      const stackpos = new THREE.Vector3(-50, 0, 0)
+      const stackPosMobile = new THREE.Vector3(-100, 0, 0)
+      const stackPosDesktop = new THREE.Vector3(-50, 0, 0)
       const capsulepos = new THREE.Vector3(isMobile ? 0 : 4, isMobile ? 4 : 0, 0)
 
       if (offset < 1 / 4) {
@@ -31,9 +31,9 @@ const InfoScene = () => {
         capsule.current.position.lerp(capsulepos, 0.05)
       }
       if (offset > 1 / 4 && offset < 1 / 2) {
-        capsule.current.position.lerp(stackpos, 0.05)
-        // console.log(scene.getWorldPosition(capsule.current.position))
+        capsule.current.position.lerp(isMobile ? stackPosMobile : stackPosDesktop, 0.05)
       }
+      capsule.current.rotation.y += 0.01
     }
   })
   const infoText = `My name is Gilberto and I am a full-stack web developer leaning towards the front-end, based in Berlin. I am passionate about creating beautiful, functional websites and applications.`
@@ -90,10 +90,19 @@ const InfoScene = () => {
 
       <group ref={capsule} position={isMobile ? [0, 4, 0] : [4, 0, 0]} scale={2.5}>
         <mesh>
-          <MeshTransmissionMaterial
+          <meshPhongMaterial
+            color='#049ef4'
+            emissive={'#bf7373'}
+            specular={'#111111'}
+            shininess={30}
+            reflectivity={1}
+            refractionRatio={0.9}
+            wireframe
+          />
+          {/* <MeshTransmissionMaterial
             envMapIntensity={0.1}
             samples={10}
-            resolution={2048}
+            resolution={1048}
             transmission={1}
             roughness={0}
             thickness={0.5}
@@ -107,8 +116,8 @@ const InfoScene = () => {
             attenuationDistance={0.1}
             attenuationColor='#fff'
             color='#fff'
-          />
-          <sphereGeometry args={[0.8, 32, 32]} />
+          /> */}
+          <sphereGeometry args={[0.8, 16, 16]} />
           <Memoji />
         </mesh>
       </group>

@@ -14,11 +14,11 @@ const ScrollFlow = ({ projects, technologies }) => {
   return (
     <>
       <Background colorA='#6446DB' colorB='#B0A6DA' />
+      <ambientLight intensity={0.5} />
       <Suspense fallback={<Loading3D />}>
         <PerspectiveCamera makeDefault fov={45} position={[-200, -200, -200]} />
         <Environment preset='warehouse' />
         <FloatingG />
-
         <ScrollControls pages={4}>
           <Mouse />
           <Stack technologies={technologies} />
