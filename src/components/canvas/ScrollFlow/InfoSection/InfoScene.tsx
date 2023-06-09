@@ -9,7 +9,7 @@ import Mouse from '@/components/canvas/Mouse/Mouse'
 const InfoScene = () => {
   const capsule = useRef<THREE.Group>()
   const infoScene = useRef<THREE.Group>()
-  const { camera, size } = useThree()
+  const { camera, size, scene } = useThree()
   const { width } = size
   const isMobile = width < 768
   const scroll = useScroll()
@@ -32,6 +32,7 @@ const InfoScene = () => {
       }
       if (offset > 1 / 4 && offset < 1 / 2) {
         capsule.current.position.lerp(stackpos, 0.05)
+        // console.log(scene.getWorldPosition(capsule.current.position))
       }
     }
   })

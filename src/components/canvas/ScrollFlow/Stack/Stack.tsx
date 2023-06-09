@@ -34,9 +34,11 @@ const Tech = ({ tech, technologies, i }) => {
 }
 
 const Stack = ({ technologies }) => {
-  const { camera } = useThree()
+  const { camera, size } = useThree()
   const scroll = useScroll()
   const stack = useRef<THREE.Group>()
+
+  const isMobile = size.width < 768
 
   useFrame(() => {
     const { offset } = scroll
@@ -53,7 +55,9 @@ const Stack = ({ technologies }) => {
   })
 
   return (
-    <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, -Math.PI * 0.1]}>
+    <group position={[-100, 0, 0]} ref={stack} rotation={[Math.PI * 0.1, 0, -Math.PI * 0.1]}
+    scale={isMobile ? 0.5 : 1}
+    >
       <group position-y={4.5} scale={1.5}>
         <group position-y={0.5}>
           <Center>

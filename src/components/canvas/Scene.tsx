@@ -11,6 +11,7 @@ export default function Scene({ children }) {
       }}
     >
       <Canvas>
+
         {children}
         <Preload all />
       </Canvas>

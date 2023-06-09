@@ -2,7 +2,6 @@
 import { Environment, PerspectiveCamera, OrbitControls, ScrollControls } from '@react-three/drei'
 import { Suspense } from 'react'
 import Loading3D from '@/components/canvas/Loading/Loading3D'
-import { useThree } from '@react-three/fiber'
 import Background from '@/components/canvas/Background'
 import Expose from './Expose/Expose'
 import InfoScene from './InfoSection/InfoScene'
