@@ -7,7 +7,7 @@ export default function Scene({ children }) {
     <div
       style={{
         width: '100%',
-        height: '100vh',
+        height: '100lvh',
       }}
     >
       <Canvas>

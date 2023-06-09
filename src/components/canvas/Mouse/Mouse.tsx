@@ -28,13 +28,15 @@ const Mouse = () => {
   useEffect(() => {
     setTimeout(() => {
       setScrollIndicator(true)
-    }, 3000)
+    }, 4000)
   }, [])
-  const x = isMobile ? viewport.width / 3 : viewport.width / 2.25
-  const y = isMobile ? viewport.height / 4 : -viewport.height / 2.5
+  const x = isMobile ? 3.5 : 11
+  const y = isMobile ? 6 : -6
+  const yTop = isMobile ? 6 : 6
+
   const hidePosition = new THREE.Vector3(100, 100, 100)
   const infoPosition = new THREE.Vector3(x, y, 0)
-  const stackPosition = new THREE.Vector3(-100 + x, 0 + y, 0)
+  const stackPosition = new THREE.Vector3(-100 + x, 0 + yTop, 0)
   const exposePosition = new THREE.Vector3(-50 + x, 75 + y, -100)
 
   useFrame(() => {
@@ -43,12 +45,12 @@ const Mouse = () => {
       if (scrollIndicator) {
         if (offset < 1 / 4) {
           indicator.current.position.lerp(infoPosition, 0.05)
-        } else if (offset > 1 / 4 && offset < 1 / 2) {
+        }
+        if (offset > 1 / 4 && offset < 1 / 2) {
           indicator.current.position.lerp(stackPosition, 0.05)
-        } else if (offset > 1 / 2 && offset < 3 / 4) {
+        }
+        if (offset > 1 / 2 && offset < 3 / 4) {
           indicator.current.position.lerp(exposePosition, 0.05)
-        } else {
-          indicator.current.position.lerp(hidePosition, 0.05)
         }
       }
     } else {
@@ -56,7 +58,7 @@ const Mouse = () => {
     }
   })
   return (
-    <group ref={indicator} scale={1.5}>
+    <group ref={indicator} scale={1.5} position={hidePosition}>
       <Html transform occlude portal={{ current: scroll.fixed }}>
         <div className={styles.Container}>
           <SvgMouse />
