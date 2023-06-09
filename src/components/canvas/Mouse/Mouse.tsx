@@ -38,19 +38,32 @@ const Mouse = () => {
   const infoPosition = new THREE.Vector3(x, y, 0)
   const stackPosition = new THREE.Vector3(-100 + x, 0 + yTop, 0)
   const exposePosition = new THREE.Vector3(-50 + x, 75 + y, -100)
+  const [nextSection, setNextSection] = useState<string>('')
+  const [currentSection, setCurrentSection] = useState<number>(1)
 
   useFrame(() => {
     const { offset } = scroll
     if (indicator.current) {
       if (scrollIndicator) {
         if (offset < 1 / 4) {
+          setNextSection('learn more')
+          setCurrentSection(1)
           indicator.current.position.lerp(infoPosition, 0.05)
         }
         if (offset > 1 / 4 && offset < 1 / 2) {
+          setNextSection('see my work')
+          setCurrentSection(2)
           indicator.current.position.lerp(stackPosition, 0.05)
         }
         if (offset > 1 / 2 && offset < 3 / 4) {
+          setCurrentSection(3)
+          setNextSection('interested? drop me a line')
           indicator.current.position.lerp(exposePosition, 0.05)
+        }
+        if (offset > 3 / 4) {
+          setCurrentSection(4)
+          setNextSection('back to top')
+          indicator.current.position.lerp(hidePosition, 0.05)
         }
       }
     } else {
@@ -61,7 +74,11 @@ const Mouse = () => {
     <group ref={indicator} scale={1.5} position={hidePosition}>
       <Html transform occlude portal={{ current: scroll.fixed }}>
         <div className={styles.Container}>
-          <SvgMouse />
+          <div className={styles.CurrentSection}>{currentSection + ' / 4'}</div>
+          <div>
+            <div className={styles.Message}>{nextSection}</div>
+            <SvgMouse />
+          </div>
         </div>
       </Html>
     </group>

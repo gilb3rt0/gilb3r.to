@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import Memoji from './MemojiCube'
-import { MeshTransmissionMaterial, Float, useScroll, Center, Text3D, MeshReflectorMaterial } from '@react-three/drei'
+import { Float, useScroll, Center, Text3D, MeshReflectorMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import WhiteBlackText from '../../WhiteBlackText'
@@ -24,16 +24,20 @@ const InfoScene = () => {
       )
       const stackPosMobile = new THREE.Vector3(-100, 0, 0)
       const stackPosDesktop = new THREE.Vector3(-50, 0, 0)
-      const capsulepos = new THREE.Vector3(isMobile ? 0 : 4, isMobile ? 4 : 0, 0)
+      const capsulepos = new THREE.Vector3(isMobile ? 0 : 4, isMobile ? 4 : 0, -5)
 
       if (offset < 1 / 4) {
         camera.position.lerp(camerapos, 0.05)
         capsule.current.position.lerp(capsulepos, 0.05)
+        capsule.current.scale.lerp(new THREE.Vector3(3.5, 3.5, 3.5), 0.05)
+        capsule.current.rotation.y = THREE.MathUtils.lerp(capsule.current.rotation.y, 0, 0.05) // animate rotation.y to 0
       }
       if (offset > 1 / 4 && offset < 1 / 2) {
         capsule.current.position.lerp(isMobile ? stackPosMobile : stackPosDesktop, 0.05)
+        capsule.current.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05)
+        capsule.current.rotation.y = THREE.MathUtils.lerp(capsule.current.rotation.y, Math.PI, 0.05) // animate rotation.y to Math.PI
+        // animate rotation.y to Math.PI
       }
-      capsule.current.rotation.y += 0.01
     }
   })
   const infoText = `My name is Gilberto and I am a full-stack web developer leaning towards the front-end, based in Berlin. I am passionate about creating beautiful, functional websites and applications.`
@@ -54,7 +58,7 @@ const InfoScene = () => {
   return (
     <group ref={infoScene} scale={isMobile ? 1 : 2}>
       <Float>
-        <group position={isMobile ? [0, -3, 0] : [-3, -0.5, 0]}>
+        <group position={isMobile ? [0, -3, 0] : [-2, -0.5, 0]}>
           <group position-y={3}>
             <Center>
               <Text3D
@@ -88,38 +92,14 @@ const InfoScene = () => {
         </group>
       </Float>
 
-      <group ref={capsule} position={isMobile ? [0, 4, 0] : [4, 0, 0]} scale={2.5}>
-        <mesh>
-          <meshPhongMaterial
-            color='#049ef4'
-            emissive={'#bf7373'}
-            specular={'#111111'}
-            shininess={30}
-            reflectivity={1}
-            refractionRatio={0.9}
-            wireframe
-          />
-          {/* <MeshTransmissionMaterial
-            envMapIntensity={0.1}
-            samples={10}
-            resolution={1048}
-            transmission={1}
-            roughness={0}
-            thickness={0.5}
-            ior={2}
-            chromaticAberration={0.0}
-            anisotropy={0.1}
-            distortion={0.3}
-            distortionScale={0.01}
-            temporalDistortion={0.01}
-            clearcoat={1}
-            attenuationDistance={0.1}
-            attenuationColor='#fff'
-            color='#fff'
-          /> */}
-          <sphereGeometry args={[0.8, 16, 16]} />
-          <Memoji />
-        </mesh>
+      <group ref={capsule} /* position={isMobile ? [0, 4, 0] : [4, 0, 100]} */>
+        <Float>
+          <mesh>
+            <meshBasicMaterial color='#ad00da' wireframe />
+            <sphereGeometry args={[0.8, 8, 8]} />
+            <Memoji />
+          </mesh>
+        </Float>
       </group>
     </group>
   )

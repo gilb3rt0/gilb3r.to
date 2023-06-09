@@ -10,26 +10,7 @@ const WhiteBlackText = ({ text, index }: { text: string; index: number }) => {
   return (
     <group position-y={0 - index * 0.5} key={index}>
       <Center>
-        {/* <Text3D
-          font='/fonts/Pilowlava_Regular.json'
-          curveSegments={12}
-          bevelEnabled
-          height={0.1}
-          size={0.3}
-          letterSpacing={0.02}
-          material={matArray}
-        >
-          {text.toUpperCase()}
-        </Text3D> */}
-        <Text
-          font='/fonts/Basteleur-Bold.otf'
-          fontSize={0.5}
-          whiteSpace='overflowWrap'
-          color={'#fff'}
-          strokeColor={'#000'}
-          strokeWidth={0.01}
-          lineHeight={1.5}
-        >
+        <Text font='/fonts/Basteleur-Bold.otf' fontSize={0.5} whiteSpace='overflowWrap' color={'#000'} lineHeight={1.5}>
           {text}
         </Text>
       </Center>
