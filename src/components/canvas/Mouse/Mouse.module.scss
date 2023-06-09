@@ -1,10 +1,10 @@
 .Container {
   color: white;
   font-family: var(--primary-font);
+  opacity: 0.5;
   div {
     display: flex;
     align-items: center;
-    opacity: 0.35;
 
     svg {
       width: 3rem;
