@@ -1,6 +1,6 @@
 'use client'
 import { Environment, PerspectiveCamera, OrbitControls, ScrollControls } from '@react-three/drei'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import Loading3D from '@/components/canvas/Loading/Loading3D'
 import Background from '@/components/canvas/Background'
 import Expose from './Expose/Expose'
@@ -8,9 +8,11 @@ import InfoScene from './InfoSection/InfoScene'
 import Contact from './Contact/Contact'
 import FloatingG from '../FloatingG'
 import Stack from './Stack/Stack'
-import Mouse from '../Mouse/Mouse'
+import PageControls from '../PageControls/PageControls'
 
 const ScrollFlow = ({ projects, technologies }) => {
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  
   return (
     <>
       <Background colorA='#6446DB' colorB='#B0A6DA' />
@@ -19,13 +21,11 @@ const ScrollFlow = ({ projects, technologies }) => {
         <PerspectiveCamera makeDefault fov={45} position={[-200, -200, -200]} />
         <Environment files={'/img/empty_warehouse_01_1k.hdr'} />
         <FloatingG />
-        <ScrollControls pages={4}>
-          <Mouse />
-          <Stack technologies={technologies} />
-          <InfoScene />
-          <Expose projects={projects} />
-          <Contact />
-        </ScrollControls>
+        <PageControls currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <Stack technologies={technologies} currentPage={currentPage} />
+        <InfoScene currentPage={currentPage} />
+        <Expose projects={projects} currentPage={currentPage} />
+        <Contact currentPage={currentPage}/>
       </Suspense>
     </>
   )

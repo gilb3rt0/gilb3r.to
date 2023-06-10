@@ -4,10 +4,10 @@ import ProjectTitle from './ProjectTitle'
 import { useRef, useState } from 'react'
 import Description from './Description'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useScroll, ScrollControls, Scroll, Float } from '@react-three/drei'
+import { Float } from '@react-three/drei'
 import * as THREE from 'three'
 
-const Expose = ({ projects }) => {
+const Expose = ({ projects, currentPage }) => {
   const [currentProject, setCurrentProject] = useState<number>(0)
   const link = projects[currentProject].link
   const { size, camera } = useThree()
@@ -15,16 +15,15 @@ const Expose = ({ projects }) => {
 
   const isMobile = width < 768
   const expose = useRef<THREE.Group>()
-  const scroll = useScroll()
+
   useFrame(() => {
-    const { offset } = scroll
     if (expose.current) {
       const camerapos = new THREE.Vector3(
         expose.current.position.x,
         expose.current.position.y,
         expose.current.position.z + 20,
       )
-      if (offset > 1 / 2 && offset < 3 / 4) {
+      if (currentPage === 3) {
         camera.position.lerp(camerapos, 0.05)
       }
     }
@@ -48,7 +47,7 @@ const Expose = ({ projects }) => {
       <Float floatIntensity={isMobile ? 0.1 : 0.5}>
         <ProjectTitle
           title={projects[currentProject].title}
-          position={isMobile ? [0.5, 0.25, 5] : [3, 2, 0]}
+          position={isMobile ? [0.5, 0.25, 5] : [3, 3, 0]}
           scale={isMobile ? 0.25 : 1}
         />
       </Float>

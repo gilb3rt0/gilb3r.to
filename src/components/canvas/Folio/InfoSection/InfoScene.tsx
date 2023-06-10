@@ -5,17 +5,14 @@ import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import WhiteBlackText from '../../WhiteBlackText'
 
-const InfoScene = () => {
+const InfoScene = ({ currentPage }) => {
   const capsule = useRef<THREE.Group>()
   const infoScene = useRef<THREE.Group>()
   const { camera, size, scene } = useThree()
   const { width } = size
   const isMobile = width < 768
-  const scroll = useScroll()
 
   useFrame(() => {
-    const { offset } = scroll
-
     if (infoScene.current) {
       const camerapos = new THREE.Vector3(
         infoScene.current.position.x,
@@ -24,15 +21,15 @@ const InfoScene = () => {
       )
       const stackPosMobile = new THREE.Vector3(-100, 0, 0)
       const stackPosDesktop = new THREE.Vector3(-50, 0, 0)
-      const capsulepos = new THREE.Vector3(isMobile ? 0 : 4, isMobile ? 4 : 0, -5)
+      const capsulepos = new THREE.Vector3(isMobile ? 0 : 5, isMobile ? 4 : 0, -5)
 
-      if (offset < 1 / 4) {
+      if (currentPage === 1) {
         camera.position.lerp(camerapos, 0.05)
         capsule.current.position.lerp(capsulepos, 0.05)
         capsule.current.scale.lerp(new THREE.Vector3(3.5, 3.5, 3.5), 0.05)
         capsule.current.rotation.y = THREE.MathUtils.lerp(capsule.current.rotation.y, 0, 0.05) // animate rotation.y to 0
       }
-      if (offset > 1 / 4 && offset < 1 / 2) {
+      if (currentPage === 2) {
         capsule.current.position.lerp(isMobile ? stackPosMobile : stackPosDesktop, 0.05)
         capsule.current.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05)
         capsule.current.rotation.y = THREE.MathUtils.lerp(capsule.current.rotation.y, Math.PI, 0.05) // animate rotation.y to Math.PI

@@ -7,7 +7,7 @@ import * as THREE from 'three'
 import WhiteBlackText from '../../WhiteBlackText'
 import { TechnologyType } from '@/sanity/types'
 
-const Tech = ({ tech, technologies, i }) => {
+const Tech = ({ tech, technologies, i, currentPage }) => {
   const mesh = useRef<THREE.Mesh>()
   const modal = useRef<THREE.Mesh>()
   const [hover, setHover] = useState<boolean>(false)
@@ -68,7 +68,7 @@ const Tech = ({ tech, technologies, i }) => {
   )
 }
 
-const Stack = ({ technologies }) => {
+const Stack = ({ technologies, currentPage }) => {
   const { camera, size } = useThree()
   const scroll = useScroll()
   const stack = useRef<THREE.Group>()
@@ -76,15 +76,13 @@ const Stack = ({ technologies }) => {
   const isMobile = size.width < 768
 
   useFrame(() => {
-    const { offset } = scroll
     if (stack.current) {
-      console.log(stack.current.position)
       const camerapos = new THREE.Vector3(
         stack.current.position.x,
         stack.current.position.y,
         stack.current.position.z + 20,
       )
-      if (offset > 1 / 4 && offset < 1 / 2) {
+      if (currentPage === 2) {
         camera.position.lerp(camerapos, 0.05)
       }
     }

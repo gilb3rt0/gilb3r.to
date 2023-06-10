@@ -6,7 +6,7 @@ import { Float, Html, useScroll, Text3D, MeshReflectorMaterial, Center } from '@
 import styles from './Contact.module.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import LoadingDom from '@/components/dom/Loading/LoadingDom'
-const Contact = () => {
+const Contact = ({ currentPage }) => {
   const contact = useRef<THREE.Group>()
   const [sent, setSent] = useState<boolean>(false)
   const form = useRef<THREE.Group>()
@@ -24,10 +24,7 @@ const Contact = () => {
     }
   }, [sent])
 
-  const scroll = useScroll()
-
   useFrame(() => {
-    const { offset } = scroll
     if (contact.current) {
       const camerapos = new THREE.Vector3(
         contact.current.position.x,
@@ -36,7 +33,7 @@ const Contact = () => {
       )
       const offViewportPos = new THREE.Vector3(100, 0, 0)
       const inViewportPos = new THREE.Vector3(0, 0, 0)
-      if (offset > 3 / 4) {
+      if (currentPage === 4) {
         camera.position.lerp(camerapos, 0.05)
         camera.lookAt(contact.current.position)
       }
@@ -102,15 +99,7 @@ const Contact = () => {
               </Text3D>
             </Center>
           </group>
-          <Html
-            transform
-            center
-            position-z={0.1}
-            occlude
-            portal={{ current: scroll.fixed }}
-            className={styles.Container}
-            position-y={-1}
-          >
+          <Html transform center position-z={0.1} occlude className={styles.Container} position-y={-1}>
             <Formik
               initialValues={{ name: '', subject: '', email: '', message: '' }}
               validate={(values) => {

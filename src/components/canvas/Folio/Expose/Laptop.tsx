@@ -16,7 +16,7 @@ export default function Laptop({ link, position, scale }) {
 
   //  divide the title by length into an array of lines with maximum 15 characters per array ond do not break words
 
-  const scroll = useScroll()
+
   return (
     <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
       <group
@@ -77,7 +77,6 @@ export default function Laptop({ link, position, scale }) {
                 transform
                 className={styles.Screen}
                 occlude='blending'
-                portal={{ current: scroll.fixed }}
               >
                 <Suspense fallback={<LoadingDom />}>
                   <iframe title='embed' src={link} />

@@ -1,0 +1,28 @@
+.Container {
+  color: white;
+  font-family: var(--primary-font);
+  opacity: 0.5;
+
+  .Message {
+    display: flex;
+    align-items: center;
+    button {
+      margin-left: 2rem;
+      cursor: pointer;
+      font-family: var(--secondary-font);
+      background: none;
+      color: white;
+      border: 0.1rem solid white;
+      padding: 1rem;
+      border-radius: 2rem;
+      font-size: 0.5rem;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background: white;
+        color: black;
+        border-color: white;
+        scale: 1.25;
+      }
+    }
+  }
+}
