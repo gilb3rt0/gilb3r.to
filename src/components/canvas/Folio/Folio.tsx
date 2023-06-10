@@ -1,5 +1,5 @@
 'use client'
-import { Environment, PerspectiveCamera, OrbitControls, ScrollControls } from '@react-three/drei'
+import { Environment, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { Suspense, useState } from 'react'
 import Loading3D from '@/components/canvas/Loading/Loading3D'
 import Background from '@/components/canvas/Background'
@@ -12,7 +12,7 @@ import PageControls from '../PageControls/PageControls'
 
 const ScrollFlow = ({ projects, technologies }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
-  
+
   return (
     <>
       <Background colorA='#6446DB' colorB='#B0A6DA' />
@@ -25,7 +25,7 @@ const ScrollFlow = ({ projects, technologies }) => {
         <Stack technologies={technologies} currentPage={currentPage} />
         <InfoScene currentPage={currentPage} />
         <Expose projects={projects} currentPage={currentPage} />
-        <Contact currentPage={currentPage}/>
+        <Contact currentPage={currentPage} />
       </Suspense>
     </>
   )
