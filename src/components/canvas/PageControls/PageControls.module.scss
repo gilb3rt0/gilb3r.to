@@ -4,10 +4,15 @@
   opacity: 0.5;
 
   .Message {
+    // border: 1px solid red;
+    width: 20rem;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    @media screen and (min-width: 768px) {
+      padding: 1rem;
+    }
     button {
-      margin-left: 2rem;
       cursor: pointer;
       font-family: var(--secondary-font);
       background: none;
@@ -16,12 +21,18 @@
       padding: 1rem;
       border-radius: 2rem;
       font-size: 0.5rem;
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        background: white;
-        color: black;
-        border-color: white;
-        scale: 1.25;
+      scale: 0.75;
+      @media screen and (min-width: 768px) {
+        scale: 1;
+        margin-left: 1rem;
+
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          background: white;
+          color: black;
+          border-color: white;
+          scale: 1.25;
+        }
       }
     }
   }

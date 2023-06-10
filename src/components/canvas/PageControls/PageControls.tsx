@@ -5,9 +5,8 @@ import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
 const PageControls = ({ currentPage, setCurrentPage }) => {
-  const { size, viewport } = useThree()
+  const { size } = useThree()
   const isMobile = size.width < 768
-  console.log(currentPage)
 
   const indicator = useRef<THREE.Group>()
   const nextPage = () => {
@@ -27,9 +26,9 @@ const PageControls = ({ currentPage, setCurrentPage }) => {
       setScrollIndicator(true)
     }, 4000)
   }, [])
-  const x = isMobile ? 3.5 : 9
-  const y = isMobile ? 6 : -7
-  const yTop = isMobile ? 6 : 6
+  const x = isMobile ? -1 : 9
+  const y = isMobile ? 7.5 : -7
+  const yTop = isMobile ? 7.5 : 6
 
   const hidePosition = new THREE.Vector3(100, 100, 100)
   const infoPosition = new THREE.Vector3(x, y, 0)
