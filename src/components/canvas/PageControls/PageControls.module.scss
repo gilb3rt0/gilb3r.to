@@ -5,12 +5,12 @@
 
   .Message {
     // border: 1px solid red;
-    width: 20rem;
+    // width: 20rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    @media screen and (min-width: 768px) {
-      padding: 1rem;
+    .CurrentSection {
+      width: 5rem;
     }
     button {
       cursor: pointer;
@@ -21,10 +21,18 @@
       padding: 1rem;
       border-radius: 2rem;
       font-size: 0.5rem;
-      scale: 0.75;
-      @media screen and (min-width: 768px) {
-        scale: 1;
+    }
+    @media screen and (min-width: 768px) {
+      padding: 1rem;
+      font-size: 1.5rem;
+      .CurrentSection {
+        width: 10rem;
+      }
+      button {
+        font-size: 1.5rem;
+
         margin-left: 1rem;
+        border-radius: 3rem;
 
         transition: all 0.2s ease-in-out;
         &:hover {
@@ -33,6 +41,16 @@
           border-color: white;
           scale: 1.25;
         }
+      }
+    }
+    @media screen and (min-width: 1500px) {
+      font-size: 2rem;
+      .CurrentSection {
+        width: 15rem;
+      }
+      button {
+        border-radius: 4rem;
+        font-size: 2rem;
       }
     }
   }

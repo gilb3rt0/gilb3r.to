@@ -9,14 +9,27 @@
   --secondary-font: 'Pilowlava', sans-serif;
 }
 
+html,
+body,
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 // html,
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
-
-body {
-  // overscroll-behavior: none;
+.content {
+  height: 100vh;
+}
+html {
+  height: -webkit-fill-available;
 }
 
 a {

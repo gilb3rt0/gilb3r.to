@@ -4,16 +4,11 @@ import { Preload } from '@react-three/drei'
 
 export default function Scene({ children }) {
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100lvh',
-      }}
+    <Canvas
+    dpr={window.devicePixelRatio}
     >
-      <Canvas>
-        {children}
-        <Preload all />
-      </Canvas>
-    </div>
+      {children}
+      <Preload all />
+    </Canvas>
   )
 }

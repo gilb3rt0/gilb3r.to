@@ -44,13 +44,13 @@ const Expose = ({ projects, currentPage }) => {
           rotation={isMobile ? [0, 0, 0] : [0, -Math.PI / 4, 0]}
         />
       </Float>
-      <Float floatIntensity={isMobile ? 0.1 : 0.5}>
-        <ProjectTitle
-          title={projects[currentProject].title}
-          position={isMobile ? [0.5, 0.25, 5] : [3, 3, 0]}
-          scale={isMobile ? 0.25 : 1}
-        />
-      </Float>
+      {isMobile ? (
+        <ProjectTitle title={projects[currentProject].title} position={[0.5, 0.25, 5]} scale={isMobile ? 0.25 : 1} />
+      ) : (
+        <Float>
+          <ProjectTitle title={projects[currentProject].title} position={[3, 3, 0]} scale={isMobile ? 0.25 : 1} />
+        </Float>
+      )}
     </group>
   )
 }
