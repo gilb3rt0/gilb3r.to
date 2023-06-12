@@ -26,7 +26,7 @@ const PageControls = ({ currentPage, setCurrentPage }) => {
       setScrollIndicator(true)
     }, 4000)
   }, [])
-  const x = isMobile ? -1 : 9
+  const x = isMobile ? -2 : 7
   const y = isMobile ? 7.5 : -7
   const yTop = isMobile ? 7.5 : 6
 
@@ -68,10 +68,12 @@ const PageControls = ({ currentPage, setCurrentPage }) => {
   })
   return (
     <group ref={indicator} scale={1.5} position={hidePosition}>
-      <Html transform occlude>
+      <Html center>
         <div className={styles.Container}>
           <div className={styles.Message}>
-            <div className={styles.CurrentSection}>{currentSection + ' / 4'}</div>
+            <div className={styles.CurrentSection}>
+              <span>{currentSection + ' / 4'}</span>
+            </div>
             <button
               onClick={() => {
                 currentPage < 4 ? nextPage() : startPage()

@@ -14,11 +14,16 @@ export default function RootLayout({ children }) {
       */}
       {/* <head /> */}
       <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
         <link rel='icon' href='/img/favicon.ico' />
       </head>
       <body>
-        {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
-        {children}
+        <div
+        className='content'
+        >
+          {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
+          {children}
+        </div>
       </body>
     </html>
   )

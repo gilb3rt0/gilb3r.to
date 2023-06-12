@@ -8,7 +8,7 @@ import WhiteBlackText from '../../WhiteBlackText'
 const InfoScene = ({ currentPage }) => {
   const capsule = useRef<THREE.Group>()
   const infoScene = useRef<THREE.Group>()
-  const { camera, size, scene } = useThree()
+  const { camera, size } = useThree()
   const { width } = size
   const isMobile = width < 768
 
@@ -26,7 +26,10 @@ const InfoScene = ({ currentPage }) => {
       if (currentPage === 1) {
         camera.position.lerp(camerapos, 0.05)
         capsule.current.position.lerp(capsulepos, 0.05)
-        capsule.current.scale.lerp(new THREE.Vector3(3.5, 3.5, 3.5), 0.05)
+        capsule.current.scale.lerp(
+          new THREE.Vector3(isMobile ? 3 : 3.5, isMobile ? 3 : 3.5, isMobile ? 3 : 3.5),
+          0.05,
+        )
         capsule.current.rotation.y = THREE.MathUtils.lerp(capsule.current.rotation.y, 0, 0.05) // animate rotation.y to 0
       }
       if (currentPage === 2) {
@@ -89,7 +92,7 @@ const InfoScene = ({ currentPage }) => {
         </group>
       </Float>
 
-      <group ref={capsule} /* position={isMobile ? [0, 4, 0] : [4, 0, 100]} */>
+      <group ref={capsule}>
         <Float>
           <mesh>
             <meshBasicMaterial color='#ad00da' wireframe />
