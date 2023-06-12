@@ -4,9 +4,7 @@ import { Preload } from '@react-three/drei'
 
 export default function Scene({ children }) {
   return (
-    <Canvas
-    dpr={window.devicePixelRatio}
-    >
+    <Canvas>
       {children}
       <Preload all />
     </Canvas>
