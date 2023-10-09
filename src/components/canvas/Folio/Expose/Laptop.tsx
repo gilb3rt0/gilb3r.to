@@ -1,21 +1,18 @@
 'use client'
 import React, { useRef, Suspense } from 'react'
 import { useGLTF, Html, PresentationControls, Float, useScroll } from '@react-three/drei'
-import * as THREE from 'three'
 import LoadingDom from '@/components/dom/Loading/LoadingDom'
-
-import styles from './Laptop.module.scss'
+import { Group } from 'three'
 
 export default function Laptop({ link, position, scale }) {
-  const laptop = useRef<THREE.Group>()
+  const laptop = useRef<Group>()
 
-  const display = useRef<THREE.Group>()
+  const display = useRef<Group>()
   const { nodes, materials } = useGLTF(
     'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf',
   ) as any
 
   //  divide the title by length into an array of lines with maximum 15 characters per array ond do not break words
-
 
   return (
     <PresentationControls azimuth={[-Math.PI / 4, Math.PI / 4]} polar={[-Math.PI / 16, Math.PI / 8]}>
@@ -75,7 +72,7 @@ export default function Laptop({ link, position, scale }) {
                 position={[0, -0.06, -1.95]}
                 parent={nodes.Circle002_1}
                 transform
-                className={styles.Screen}
+                className=""
                 occlude='blending'
               >
                 <Suspense fallback={<LoadingDom />}>

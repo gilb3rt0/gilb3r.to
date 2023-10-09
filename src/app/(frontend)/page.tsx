@@ -7,8 +7,10 @@ export default async function Page() {
   const technologies = await getTechnologies()
 
   return (
-    <Scene>
-      <ScrollFlow projects={projects} technologies={technologies} />
-    </Scene>
+    <main className='w-screen h-screen'>
+      <Scene>
+        <ScrollFlow projects={projects} technologies={technologies} />
+      </Scene>
+    </main>
   )
 }

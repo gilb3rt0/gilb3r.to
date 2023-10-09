@@ -1,4 +1,8 @@
-@import 'public/fonts/fonty.scss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'public/fonts/fonty.css';
 
 * {
   box-sizing: border-box;
@@ -19,15 +23,13 @@ body,
   height: 100%;
   overflow: hidden;
 }
-// html,
+
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
 }
-.content {
-  height: 100vh;
-}
+
 html {
   height: -webkit-fill-available;
 }

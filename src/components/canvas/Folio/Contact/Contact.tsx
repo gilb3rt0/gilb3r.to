@@ -1,16 +1,16 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
-import * as THREE from 'three'
+import { useEffect, useRef, useState } from 'react'
+
 import { useFrame, useThree } from '@react-three/fiber'
-import { Float, Html, useScroll, Text3D, MeshReflectorMaterial, Center } from '@react-three/drei'
-import styles from './Contact.module.scss'
+import { Float, Html, Text3D, MeshReflectorMaterial, Center } from '@react-three/drei'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import LoadingDom from '@/components/dom/Loading/LoadingDom'
+import { Group, Vector3 } from 'three'
 const Contact = ({ currentPage }) => {
-  const contact = useRef<THREE.Group>()
+  const contact = useRef<Group>()
   const [sent, setSent] = useState<boolean>(false)
-  const form = useRef<THREE.Group>()
-  const successMsg = useRef<THREE.Group>()
+  const form = useRef<Group>()
+  const successMsg = useRef<Group>()
   const { size, camera } = useThree()
   const { width } = size
 
@@ -26,13 +26,13 @@ const Contact = ({ currentPage }) => {
 
   useFrame(() => {
     if (contact.current) {
-      const camerapos = new THREE.Vector3(
+      const camerapos = new Vector3(
         contact.current.position.x,
         contact.current.position.y,
         contact.current.position.z + 20,
       )
-      const offViewportPos = new THREE.Vector3(100, 0, 0)
-      const inViewportPos = new THREE.Vector3(0, 0, 0)
+      const offViewportPos = new Vector3(100, 0, 0)
+      const inViewportPos = new Vector3(0, 0, 0)
       if (currentPage === 4) {
         camera.position.lerp(camerapos, 0.05)
         camera.lookAt(contact.current.position)
@@ -99,7 +99,7 @@ const Contact = ({ currentPage }) => {
               </Text3D>
             </Center>
           </group>
-          <Html transform center position-z={0.1} occlude className={styles.Container} position-y={-1}>
+          <Html transform center position-z={0.1} occlude className="" position-y={-1}>
             <Formik
               initialValues={{ name: '', subject: '', email: '', message: '' }}
               validate={(values) => {
@@ -134,21 +134,21 @@ const Contact = ({ currentPage }) => {
                 ) : (
                   <Form>
                     <div>
-                      <ErrorMessage name='name' component='div' className={styles.Err} />
+                      <ErrorMessage name='name' component='div' className='' />
                       <Field type='name' name='name' placeholder='Name' disabled={isSubmitting} />
                     </div>
 
                     <div>
-                      <ErrorMessage name='subject' component='div' className={styles.Err} />
+                      <ErrorMessage name='subject' component='div' className='' />
                       <Field type='subject' name='subject' placeholder='Subject' disabled={isSubmitting} />
                     </div>
                     <div>
-                      <ErrorMessage name='email' component='div' className={styles.Err} />
+                      <ErrorMessage name='email' component='div' className='' />
                       <Field type='email' name='email' placeholder='Email' disabled={isSubmitting} />
                     </div>
 
                     <div>
-                      <ErrorMessage name='message' component='div' className={styles.Err} />
+                      <ErrorMessage name='message' component='div' className='' />
                       <Field as='textarea' name='message' placeholder='Message' disabled={isSubmitting} />
                     </div>
                     <Field type='submit' value='Submit' disabled={isSubmitting} />

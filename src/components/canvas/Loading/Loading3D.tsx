@@ -1,11 +1,10 @@
 import { Html } from '@react-three/drei'
-import styles from './Loading3D.module.scss'
 
 const Loading3D = () => {
   return (
     <Html>
-      <div className={styles.Loading}>
-        <svg className={styles.Spinner} fill='none' viewBox='0 0 24 24'>
+      <div className=''>
+        <svg className='' fill='none' viewBox='0 0 24 24'>
           <circle cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
           <path
             fill='currentColor'
