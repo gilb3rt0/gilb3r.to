@@ -72,11 +72,11 @@ export default function Laptop({ link, position, scale }) {
                 position={[0, -0.06, -1.95]}
                 parent={nodes.Circle002_1}
                 transform
-                className=""
+                className=''
                 occlude='blending'
               >
                 <Suspense fallback={<LoadingDom />}>
-                  <iframe title='embed' src={link} />
+                  <iframe title='embed' src={link} className='w-[1280px] h-[800px]' />
                 </Suspense>
               </Html>
             </mesh>

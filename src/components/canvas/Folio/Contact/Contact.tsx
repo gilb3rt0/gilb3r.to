@@ -3,16 +3,34 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useFrame, useThree } from '@react-three/fiber'
 import { Float, Html, Text3D, MeshReflectorMaterial, Center } from '@react-three/drei'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import LoadingDom from '@/components/dom/Loading/LoadingDom'
 import { Group, Vector3 } from 'three'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
+  subject: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
+  email: z.string().email({ message: 'Invalid email' }),
+  message: z.string().min(2, { message: 'Too short' }).max(500, { message: 'Too long' }),
+})
+
 const Contact = ({ currentPage }) => {
   const contact = useRef<Group>()
   const [sent, setSent] = useState<boolean>(false)
+  const [sending, setSending] = useState<boolean>(false)
   const form = useRef<Group>()
   const successMsg = useRef<Group>()
   const { size, camera } = useThree()
   const { width } = size
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+  })
 
   const isMobile = width < 768
 
@@ -46,6 +64,7 @@ const Contact = ({ currentPage }) => {
       }
     }
   })
+
   return (
     <group position={[100, -50, -200]} ref={contact}>
       <group ref={successMsg} visible={sent}>
@@ -99,63 +118,86 @@ const Contact = ({ currentPage }) => {
               </Text3D>
             </Center>
           </group>
-          <Html transform center position-z={0.1} occlude className="" position-y={-1}>
-            <Formik
-              initialValues={{ name: '', subject: '', email: '', message: '' }}
-              validate={(values) => {
-                const errors: any = {}
-                if (!values.name) {
-                  errors.name = 'Required'
-                }
-                if (!values.email) {
-                  errors.email = 'Required'
-                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                  errors.email = 'Invalid email address'
-                }
-                return errors
-              }}
-              onSubmit={async (values, { setSubmitting, setErrors, setValues }) => {
+          <Html transform center position-z={0.1} occlude className='' position-y={-1}>
+            <form
+              onSubmit={handleSubmit(async (data) => {
+                if (!contactSchema.safeParse(data).success) return
+                setSending(true)
                 const res = await fetch('/api/contact', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify(values),
+                  body: JSON.stringify(data),
                 })
+                setSending(false)
 
-                setSubmitting(false)
-                setSent(true)
-                setValues({ name: '', subject: '', email: '', message: '' })
-              }}
+                if (res.status !== 200) {
+                  setSent(true)
+                  reset()
+                }
+              })}
+              className='flex flex-col justify-center items-start gap-2'
             >
-              {({ isSubmitting }) => {
-                return isSubmitting ? (
-                  <LoadingDom />
-                ) : (
-                  <Form>
-                    <div>
-                      <ErrorMessage name='name' component='div' className='' />
-                      <Field type='name' name='name' placeholder='Name' disabled={isSubmitting} />
-                    </div>
-
-                    <div>
-                      <ErrorMessage name='subject' component='div' className='' />
-                      <Field type='subject' name='subject' placeholder='Subject' disabled={isSubmitting} />
-                    </div>
-                    <div>
-                      <ErrorMessage name='email' component='div' className='' />
-                      <Field type='email' name='email' placeholder='Email' disabled={isSubmitting} />
-                    </div>
-
-                    <div>
-                      <ErrorMessage name='message' component='div' className='' />
-                      <Field as='textarea' name='message' placeholder='Message' disabled={isSubmitting} />
-                    </div>
-                    <Field type='submit' value='Submit' disabled={isSubmitting} />
-                  </Form>
-                )
-              }}
-            </Formik>
+              <div className='flex flex-row gap-3'>
+                <div className='flex sm:flex-col justify-between'>
+                  <label htmlFor='name' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                    name
+                    <input
+                      type='text'
+                      {...register('name', { required: true })}
+                      className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 focus:ring-opacity-50 px-2 py-1 bg-purple-50 text-purple-950'
+                    />
+                    {errors.name ? (
+                      <span className='text-red-400 transition-all ease-in duration-100'>
+                        {errors?.name?.message as string}
+                      </span>
+                    ) : null}
+                  </label>
+                  <label htmlFor='subject' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                    subject
+                    <input
+                      type='text'
+                      {...register('subject', { required: true })}
+                      className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 focus:ring-opacity-50 px-2 py-1 bg-purple-50 text-purple-950'
+                    />
+                    {errors.subject ? (
+                      <span className='text-red-400 transition-all ease-in duration-100'>
+                        {errors?.subject?.message as string}
+                      </span>
+                    ) : null}
+                  </label>
+                  <label htmlFor='email' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                    email
+                    <input
+                      type='email'
+                      {...register('email', { required: true })}
+                      className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 focus:ring-opacity-50 px-2 py-1 bg-purple-50 text-purple-950'
+                    />
+                    {errors.email ? (
+                      <span className='text-red-400 transition-all ease-in duration-100'>
+                        {errors?.email?.message as string}
+                      </span>
+                    ) : null}
+                  </label>
+                </div>
+                <label htmlFor='message' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                  message
+                  <textarea
+                    {...register('message', { required: true })}
+                    className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 resize-none focus:ring-opacity-50 px-2 py-1 h-56 bg-purple-50 text-purple-950'
+                  />
+                  {errors.message ? (
+                    <span className='text-red-400 transition-all ease-in duration-100'>
+                      {errors?.message?.message as string}
+                    </span>
+                  ) : null}
+                </label>
+              </div>
+              <button type='submit' className='rounded-md bg-purple-900 text-white p-2 w-full' disabled={sending}>
+                send
+              </button>
+            </form>
           </Html>
         </Float>
       </group>

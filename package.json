@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^8.5.1",
+    "@hookform/resolvers": "^3.3.1",
     "@portabletext/react": "^3.0.0",
     "@react-three/drei": "^9.69.3",
     "@react-three/fiber": "^8.13.0",
@@ -30,6 +31,7 @@
     "nodemailer": "^6.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
     "sanity": "^3.11.3",
     "sanity-plugin-order-documents": "^0.0.24",
     "sanity-plugin-vercel-deploy": "^3.3.4",

@@ -70,7 +70,7 @@ const PageControls = ({ currentPage, setCurrentPage }) => {
     <group ref={indicator} scale={1.5} position={hidePosition}>
       <Html center>
         <button
-          className='text-purple-100 opacity-70 flex gap-4 items-center p-2 rounded-full border-2 border-purple-100'
+          className='text-purple-100 opacity-70 flex gap-4 items-center p-2 rounded-full border-2 border-purple-100 hover:scale-110 transition-all duration-250 ease-in-out'
           onClick={() => {
             currentPage < 4 ? nextPage() : startPage()
           }}

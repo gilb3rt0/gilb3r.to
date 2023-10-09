@@ -8,12 +8,18 @@ const Description = ({ currentProject, setCurrentProject, projects, position, sc
 
   return (
     <group ref={descriptionContainer} position={position} scale={scale} rotation={rotation}>
-      <Html transform center occlude className=''>
+      <Html
+        transform
+        center
+        occlude
+        className='max-w-xs overflow-y-auto max-h-56 font-primary text-purple-100 opacity-70'
+      >
         <PortableText value={projects[currentProject].description} />
       </Html>
       <group position={[-1, -2, 2]}>
-        <Html position={[-3, 0, 0]} occlude transform center className=''>
+        <Html position={[-3, 0, 0]} occlude transform center>
           <button
+            className='bg-black rounded-full p-6 text-purple-100 font-display'
             onClick={() => {
               setCurrentProject(currentProject - 1)
               if (currentProject === 0) {
@@ -24,8 +30,9 @@ const Description = ({ currentProject, setCurrentProject, projects, position, sc
             prev
           </button>
         </Html>
-        <Html position={[3, 0, 0]} occlude transform center position-z={0.1} castShadow receiveShadow className=''>
+        <Html position={[3, 0, 0]} occlude transform center position-z={0.1} castShadow receiveShadow>
           <button
+            className='bg-black rounded-full p-6 text-purple-100 font-display'
             onClick={() => {
               setCurrentProject(currentProject + 1)
               if (currentProject === projects.length - 1) {
