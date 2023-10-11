@@ -1,8 +1,7 @@
-import styles from './LoadingDom.module.scss'
 const LoadingDom = () => {
   return (
-    <div className={styles.Loading}>
-      <svg className={styles.Spinner} fill='none' viewBox='0 0 24 24'>
+    <div className='w-screen h-screen'>
+      <svg className='animate-spin' fill='none' viewBox='0 0 24 24'>
         <circle cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
         <path
           fill='currentColor'

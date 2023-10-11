@@ -4,9 +4,11 @@ import { Preload } from '@react-three/drei'
 
 export default function Scene({ children }) {
   return (
-    <Canvas>
-      {children}
-      <Preload all />
-    </Canvas>
+    <div className='w-screen h-screen'>
+      <Canvas>
+        {children}
+        <Preload all />
+      </Canvas>
+    </div>
   )
 }

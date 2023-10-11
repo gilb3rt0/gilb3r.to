@@ -1,5 +1,5 @@
 import { Html } from '@react-three/drei'
-import styles from './PageControls.module.scss'
+
 import { useEffect, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -69,20 +69,15 @@ const PageControls = ({ currentPage, setCurrentPage }) => {
   return (
     <group ref={indicator} scale={1.5} position={hidePosition}>
       <Html center>
-        <div className={styles.Container}>
-          <div className={styles.Message}>
-            <div className={styles.CurrentSection}>
-              <span>{currentSection + ' / 4'}</span>
-            </div>
-            <button
-              onClick={() => {
-                currentPage < 4 ? nextPage() : startPage()
-              }}
-            >
-              {nextSection}
-            </button>
-          </div>
-        </div>
+        <button
+          className='text-purple-100 opacity-70 flex gap-4 items-center p-2 rounded-full border-2 border-purple-100 hover:scale-110 transition-all duration-250 ease-in-out'
+          onClick={() => {
+            currentPage < 4 ? nextPage() : startPage()
+          }}
+        >
+          <span className='font-primary text-2xl w-28'>{currentSection + ' / 4'}</span>
+          <span className='font-display'>{nextSection}</span>
+        </button>
       </Html>
     </group>
   )

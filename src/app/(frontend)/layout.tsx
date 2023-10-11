@@ -1,4 +1,4 @@
-import './global.scss'
+import './globals.css'
 
 export const metadata = {
   title: 'Gilberto Mascarenhas | Web Developer',
@@ -18,12 +18,8 @@ export default function RootLayout({ children }) {
         <link rel='icon' href='/img/favicon.ico' />
       </head>
       <body>
-        <div
-        className='content'
-        >
-          {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
-          {children}
-        </div>
+        {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
+        {children}
       </body>
     </html>
   )

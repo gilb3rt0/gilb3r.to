@@ -4,27 +4,7 @@
  */
 
 @font-face {
-  font-family: 'Anton';
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: normal;
-  src: url('Anton-Regular.woff2') format('woff2'),
-       url('Anton-Regular.woff') format('woff'),
-       url('Anton-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Pilowlava';
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: normal;
-  src: url('Pilowlava-Regular.woff2') format('woff2'),
-       url('Pilowlava-Regular.woff') format('woff'),
-       url('Pilowlava-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Basteleur';
+  font-family: 'Basteleur Bold';
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -34,7 +14,7 @@
 }
 
 @font-face {
-  font-family: 'Basteleur';
+  font-family: 'Basteleur Regular';
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
