@@ -1,17 +1,10 @@
+import { ContactProps, contactSchema } from '@/components/canvas/Folio/Contact/Contact'
 import nodemailer from 'nodemailer'
-import { z } from 'zod'
-
-const schema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  subject: z.string(),
-  message: z.string(),
-})
 
 export async function POST(req: Request, res: Response) {
-  const { name, email, subject, message } = await req.json()
+  const { name, email, subject, message }: ContactProps = await req.json()
 
-  const validInput = schema.safeParse({ name, email, message, subject })
+  const validInput = contactSchema.safeParse({ name, email, message, subject })
 
   if (!validInput.success) {
     return new Response('Invalid input', { status: 400 })

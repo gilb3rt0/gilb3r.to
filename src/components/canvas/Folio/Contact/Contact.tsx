@@ -8,12 +8,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-const contactSchema = z.object({
+export const contactSchema = z.object({
   name: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
   subject: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
   email: z.string().email({ message: 'Invalid email' }),
   message: z.string().min(2, { message: 'Too short' }).max(500, { message: 'Too long' }),
 })
+
+export type ContactProps = z.infer<typeof contactSchema>
 
 const Contact = ({ currentPage }) => {
   const contact = useRef<Group>()
