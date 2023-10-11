@@ -1,5 +1,13 @@
-import { ContactProps, contactSchema } from '@/components/canvas/Folio/Contact/Contact'
 import nodemailer from 'nodemailer'
+import { z } from 'zod'
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
+  subject: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
+  email: z.string().email({ message: 'Invalid email' }),
+  message: z.string().min(2, { message: 'Too short' }).max(500, { message: 'Too long' }),
+})
+type ContactProps = z.infer<typeof contactSchema>
 
 export async function POST(req: Request, res: Response) {
   const { name, email, subject, message }: ContactProps = await req.json()
@@ -36,4 +44,6 @@ export async function POST(req: Request, res: Response) {
     .then((success) => {
       return new Response(success, { status: 200 })
     })
+
+  return new Response('Success', { status: 200 })
 }
