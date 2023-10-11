@@ -134,7 +134,7 @@ const Contact = ({ currentPage }) => {
                 })
                 setSending(false)
 
-                if (res.status !== 200) {
+                if (res.status === 200) {
                   setSent(true)
                   reset()
                 }
@@ -198,7 +198,9 @@ const Contact = ({ currentPage }) => {
               </div>
               <button
                 type='submit'
-                className='font-display mt-4 rounded-3xl bg-purple-900 text-purple-50 p-2 w-full'
+                className={`${
+                  sending ? 'opacity-75' : 'opaticty-1'
+                } font-display mt-4 rounded-3xl bg-purple-900 text-purple-50 p-2 w-full`}
                 disabled={sending}
               >
                 send
