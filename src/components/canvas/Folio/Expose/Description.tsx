@@ -19,7 +19,7 @@ const Description = ({ currentProject, setCurrentProject, projects, position, sc
       <group position={[-1, -2, 2]}>
         <Html position={[-3, 0, 0]} occlude transform center>
           <button
-            className='bg-black rounded-full p-6 text-purple-100 font-display'
+            className='bg-black rounded-full p-6 text-purple-100 font-display cursor-pointer hover:scale-110 transition-all ease-in-out duration-150'
             onClick={() => {
               setCurrentProject(currentProject - 1)
               if (currentProject === 0) {
@@ -32,7 +32,7 @@ const Description = ({ currentProject, setCurrentProject, projects, position, sc
         </Html>
         <Html position={[3, 0, 0]} occlude transform center position-z={0.1} castShadow receiveShadow>
           <button
-            className='bg-black rounded-full p-6 text-purple-100 font-display'
+            className='bg-black rounded-full p-6 text-purple-100 font-display cursor-pointer hover:scale-110 transition-all ease-in-out duration-150'
             onClick={() => {
               setCurrentProject(currentProject + 1)
               if (currentProject === projects.length - 1) {

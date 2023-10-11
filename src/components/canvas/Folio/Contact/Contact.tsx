@@ -141,8 +141,8 @@ const Contact = ({ currentPage }) => {
               })}
               className='flex flex-col justify-center items-start gap-2'
             >
-              <div className='flex flex-row gap-3'>
-                <div className='flex sm:flex-col justify-between'>
+              <div className='flex flex-col sm:flex-row mt-12 sm:mt-0 gap-3'>
+                <div className='flex flex-col justify-between'>
                   <label htmlFor='name' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
                     name
                     <input
@@ -196,7 +196,7 @@ const Contact = ({ currentPage }) => {
                   ) : null}
                 </label>
               </div>
-              <button type='submit' className='rounded-md bg-purple-900 text-white p-2 w-full' disabled={sending}>
+              <button type='submit' className='rounded-3xl bg-purple-900 text-white p-2 w-full' disabled={sending}>
                 send
               </button>
             </form>

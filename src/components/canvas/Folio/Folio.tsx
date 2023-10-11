@@ -11,7 +11,7 @@ import Stack from './Stack/Stack'
 import PageControls from '../PageControls/PageControls'
 
 const ScrollFlow = ({ projects, technologies }) => {
-  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [currentPage, setCurrentPage] = useState<number>(4)
 
   return (
     <>
