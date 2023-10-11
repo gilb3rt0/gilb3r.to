@@ -12,7 +12,7 @@ import PageControls from '../PageControls/PageControls'
 
 const ScrollFlow = ({ projects, technologies }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
-
+  //test
   return (
     <>
       <Background colorA='#6446DB' colorB='#B0A6DA' />
