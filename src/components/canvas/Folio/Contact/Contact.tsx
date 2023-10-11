@@ -8,14 +8,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-export const contactSchema = z.object({
+const contactSchema = z.object({
   name: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
   subject: z.string().min(2, { message: 'Too short' }).max(50, { message: 'Too long' }),
   email: z.string().email({ message: 'Invalid email' }),
   message: z.string().min(2, { message: 'Too short' }).max(500, { message: 'Too long' }),
 })
 
-export type ContactProps = z.infer<typeof contactSchema>
+type ContactProps = z.infer<typeof contactSchema>
 
 const Contact = ({ currentPage }) => {
   const contact = useRef<Group>()
@@ -143,7 +143,7 @@ const Contact = ({ currentPage }) => {
             >
               <div className='flex flex-col sm:flex-row mt-12 sm:mt-0 gap-3'>
                 <div className='flex flex-col justify-between'>
-                  <label htmlFor='name' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                  <label htmlFor='name' className='flex flex-col w-full font-primary tet-sm text-purple-50 relative'>
                     name
                     <input
                       type='text'
@@ -151,12 +151,12 @@ const Contact = ({ currentPage }) => {
                       className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 focus:ring-opacity-50 px-2 py-1 bg-purple-50 text-purple-950'
                     />
                     {errors.name ? (
-                      <span className='text-red-400 transition-all ease-in duration-100'>
+                      <span className='text-red-400 transition-all ease-in duration-100 absolute -bottom-6'>
                         {errors?.name?.message as string}
                       </span>
                     ) : null}
                   </label>
-                  <label htmlFor='subject' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                  <label htmlFor='subject' className='flex flex-col w-full font-primary tet-sm text-purple-50 relative'>
                     subject
                     <input
                       type='text'
@@ -164,12 +164,12 @@ const Contact = ({ currentPage }) => {
                       className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 focus:ring-opacity-50 px-2 py-1 bg-purple-50 text-purple-950'
                     />
                     {errors.subject ? (
-                      <span className='text-red-400 transition-all ease-in duration-100'>
+                      <span className='text-red-400 transition-all ease-in duration-100 absolute -bottom-6'>
                         {errors?.subject?.message as string}
                       </span>
                     ) : null}
                   </label>
-                  <label htmlFor='email' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                  <label htmlFor='email' className='flex flex-col w-full font-primary tet-sm text-purple-50 relative'>
                     email
                     <input
                       type='email'
@@ -177,26 +177,30 @@ const Contact = ({ currentPage }) => {
                       className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 focus:ring-opacity-50 px-2 py-1 bg-purple-50 text-purple-950'
                     />
                     {errors.email ? (
-                      <span className='text-red-400 transition-all ease-in duration-100'>
+                      <span className='text-red-400 transition-all ease-in duration-100 absolute -bottom-6'>
                         {errors?.email?.message as string}
                       </span>
                     ) : null}
                   </label>
                 </div>
-                <label htmlFor='message' className='flex flex-col w-full font-primary tet-sm text-purple-50'>
+                <label htmlFor='message' className='flex flex-col w-full font-primary tet-sm text-purple-50 relative'>
                   message
                   <textarea
                     {...register('message', { required: true })}
                     className='rounded-md outline-none focus:ring-2 focus:ring-pruple-900 resize-none focus:ring-opacity-50 px-2 py-1 h-56 bg-purple-50 text-purple-950'
                   />
                   {errors.message ? (
-                    <span className='text-red-400 transition-all ease-in duration-100'>
+                    <span className='text-red-400 transition-all ease-in duration-100 absolute -bottom-6'>
                       {errors?.message?.message as string}
                     </span>
                   ) : null}
                 </label>
               </div>
-              <button type='submit' className='rounded-3xl bg-purple-900 text-white p-2 w-full' disabled={sending}>
+              <button
+                type='submit'
+                className='font-display mt-4 rounded-3xl bg-purple-900 text-purple-50 p-2 w-full'
+                disabled={sending}
+              >
                 send
               </button>
             </form>
