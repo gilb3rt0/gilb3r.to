@@ -4,54 +4,7 @@
 
 @import 'public/fonts/fonty.css';
 
-* {
-  box-sizing: border-box;
-}
-
 :root {
   --primary-font: 'Steps-Mono', sans-serif;
   --secondary-font: 'Pilowlava', sans-serif;
-}
-
-html,
-body,
-#root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-}
-
-html {
-  height: -webkit-fill-available;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  font-family: var(--secondary-font);
-  animation: linkPulse 2s infinite;
-}
-
-@keyframes linkPulse {
-  0% {
-    filter: blur(0.1rem);
-    opacity: 0.75;
-  }
-  50% {
-    filter: blur(0);
-    opacity: 1;
-  }
-  100% {
-    filter: blur(0.1rem);
-    opacity: 0.75;
-  }
 }

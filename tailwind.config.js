@@ -6,6 +6,10 @@ module.exports = {
       fontFamily: {
         display: ['Pilowlava', 'bold'],
         primary: ['Steps-Mono', 'monospace'],
+        gloock: ['var(--gloock)', 'bold'],
+      },
+      boxShadow: {
+        hard: '.2rem .2rem',
       },
     },
   },

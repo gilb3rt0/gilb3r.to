@@ -1,4 +1,5 @@
-import { defineType, defineArrayMember, defineField } from '@sanity-typed/types'
+import { defineType, defineArrayMember, defineField, ImageSchemaType, Image } from 'sanity'
+import { Technology } from './technologies'
 
 export const post = defineType({
   name: 'post',
@@ -32,12 +33,6 @@ export const post = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'technology',
       title: 'Technology',
       type: 'array',
@@ -49,7 +44,7 @@ export const post = defineType({
       type: 'array',
       of: [
         defineArrayMember({
-          type: 'markdown' || 'image' || 'code' || 'sandbox',
+          type: 'block',
         }),
       ],
     }),
@@ -76,3 +71,33 @@ export const sandbox = defineType({
     }),
   ],
 })
+
+/* write a type */
+export type Post = {
+  _id: string
+  _type: 'post'
+  title: string
+  slug: string
+  date: string
+  coverImage: ImageSchemaType
+  excerpt: string
+  technology: Technology[]
+  content: Markdown[] | Image[] | Sandbox[]
+}
+
+export type Markdown = {
+  _type: 'markdown'
+  children: {
+    _type: 'span'
+    marks: []
+    text: string
+  }[]
+  style: 'normal'
+  _key: string
+}
+
+export type Sandbox = {
+  _type: 'sandbox'
+  url: string
+  _key: string
+}
